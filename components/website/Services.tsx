@@ -70,7 +70,7 @@ const SERVICES = [
 ];
 
 export default function Services() {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -207,7 +207,7 @@ export default function Services() {
                   </AnimatePresence>
                 </div>
                 <div
-                  className="flex-shrink-0 mt-1"
+                  className="shrink-0 mt-1"
                   style={{
                     width: "36px",
                     height: "36px",
