@@ -1,26 +1,311 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+ 
+/* ============================================================
+   THEME — replaces tailwind.config.js
+   ============================================================ */
+@theme {
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+ 
+  /* Semantic color tokens — now referencing oklch vars directly */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+ 
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+ 
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+ 
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+ 
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+ 
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+ 
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+ 
+  --color-destructive:            var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+ 
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+ 
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+ 
+  /* Sidebar colors */
+  --color-sidebar:                    var(--sidebar-background);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
+ 
+  /* Brand palette — directly usable as bg-slate-indigo, text-lichen-teal, etc. */
+  --color-slate-indigo: oklch(18.5% 0.047 254);
+  --color-lichen-teal:  oklch(57.8% 0.118 183);
+  --color-sandstone:    oklch(97.3% 0.008 75);
+  --color-muted-clay:   oklch(72.8% 0.082 60);
+ 
+  /* Font families */
+  --font-heading: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-mono:    ui-monospace, monospace;
+ 
+  /* Keyframes (replaces tailwindcss-animate plugin entries) */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up:   accordion-up 0.2s ease-out;
+ 
+  @keyframes accordion-down {
+    from { height: 0; }
+    to   { height: var(--radix-accordion-content-height); }
+  }
+ 
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to   { height: 0; }
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+ 
+/* ============================================================
+   CSS CUSTOM PROPERTIES — light & dark modes
+   All semantic tokens are now full oklch() values.
+   ============================================================ */
+@layer base {
+  :root {
+    /* Warm off-white background / sandstone */
+    --background:             oklch(97.3% 0.008 75);
+    --foreground:             oklch(18.5% 0.047 254);
+ 
+    --card:                   oklch(97.3% 0.008 75);
+    --card-foreground:        oklch(18.5% 0.047 254);
+ 
+    --popover:                oklch(100% 0 0);
+    --popover-foreground:     oklch(18.5% 0.047 254);
+ 
+    /* Lichen teal */
+    --primary:                oklch(57.8% 0.118 183);
+    --primary-foreground:     oklch(97.3% 0.008 75);
+ 
+    --secondary:              oklch(93.0% 0.008 75);
+    --secondary-foreground:   oklch(18.5% 0.047 254);
+ 
+    --muted:                  oklch(91.2% 0.006 75);
+    --muted-foreground:       oklch(48.5% 0.038 254);
+ 
+    /* Muted clay / warm gold */
+    --accent:                 oklch(72.8% 0.082 60);
+    --accent-foreground:      oklch(18.5% 0.047 254);
+ 
+    --destructive:            oklch(60.2% 0.210 25);
+    --destructive-foreground: oklch(98.5% 0 0);
+ 
+    --border:                 oklch(88.2% 0.007 75);
+    --input:                  oklch(88.2% 0.007 75);
+    --ring:                   oklch(57.8% 0.118 183);
+ 
+    --radius: 0.25rem;
+  }
+ 
+  .dark {
+    --background:             oklch(11.5% 0.035 254);
+    --foreground:             oklch(97.3% 0.008 75);
+ 
+    --card:                   oklch(13.8% 0.040 254);
+    --card-foreground:        oklch(97.3% 0.008 75);
+ 
+    --popover:                oklch(13.8% 0.040 254);
+    --popover-foreground:     oklch(97.3% 0.008 75);
+ 
+    /* Brighter teal for dark mode */
+    --primary:                oklch(68.5% 0.135 183);
+    --primary-foreground:     oklch(11.5% 0.035 254);
+ 
+    --secondary:              oklch(20.5% 0.040 254);
+    --secondary-foreground:   oklch(97.3% 0.008 75);
+ 
+    --muted:                  oklch(20.5% 0.040 254);
+    --muted-foreground:       oklch(68.5% 0.014 75);
+ 
+    --accent:                 oklch(72.8% 0.082 60);
+    --accent-foreground:      oklch(11.5% 0.035 254);
+ 
+    --destructive:            oklch(32.0% 0.115 25);
+    --destructive-foreground: oklch(98.5% 0 0);
+ 
+    --border:                 oklch(24.8% 0.043 254);
+    --input:                  oklch(24.8% 0.043 254);
+    --ring:                   oklch(68.5% 0.135 183);
+  }
 }
+ 
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+ 
+  html {
+    scroll-behavior: smooth;
+  }
+ 
+  body {
+    @apply bg-background text-foreground font-body;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+ 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    color: var(--foreground);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+}
+ 
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+@layer utilities {
+  /* Brand colour helpers */
+  .brand-teal      { color: oklch(57.8% 0.118 183); }
+  .brand-slate     { color: oklch(18.5% 0.047 254); }
+  .brand-sandstone { background-color: oklch(97.3% 0.008 75); }
+  .brand-clay      { color: oklch(72.8% 0.082 60); }
+ 
+  /* Vertical rule */
+  .vertical-rule {
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      oklch(57.8% 0.118 183) 20%,
+      oklch(57.8% 0.118 183) 80%,
+      transparent
+    );
+  }
+ 
+  /* Glow / shadow */
+  .teal-glow {
+    box-shadow: 0 0 60px oklch(57.8% 0.118 183 / 0.08);
+  }
+ 
+  /* Hover scale */
+  .hover-expand {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .hover-expand:hover {
+    transform: scaleX(1.01);
+  }
+ 
+  /* Underline-style input */
+  .underline-input {
+    border: none;
+    border-bottom: 1px solid oklch(18.5% 0.047 254);
+    border-radius: 0;
+    background: transparent;
+    padding: 12px 0;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    color: oklch(18.5% 0.047 254);
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .underline-input::placeholder {
+    color: oklch(18.5% 0.047 254 / 0.4);
+  }
+  .underline-input:focus {
+    border-bottom-color: oklch(57.8% 0.118 183);
+    outline: 2px solid transparent;
+  }
+ 
+  /* Teal focus ring */
+  .focus-teal:focus {
+    outline: 2px solid oklch(57.8% 0.118 183);
+    outline-offset: 2px;
+  }
+}
+ 
+/* ============================================================
+   COMPONENT CLASSES
+   ============================================================ */
+@layer components {
+  /* Scroll reveal */
+  .reveal {
+    animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+ 
+  /* Service accordion row */
+  .service-line {
+    border-bottom: 1px solid oklch(18.5% 0.047 254 / 0.12);
+    transition: background 0.3s ease;
+  }
+  .service-line:hover {
+    background: oklch(57.8% 0.118 183 / 0.04);
+  }
+ 
+  /* Floating action bar */
+  .floating-bar {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+  }
+ 
+  /* Nav links with animated underline */
+  .nav-link {
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: oklch(18.5% 0.047 254);
+    transition: color 0.3s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: oklch(57.8% 0.118 183);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link:hover        { color: oklch(57.8% 0.118 183); }
+}
+ 
+/* ============================================================
+   STANDALONE KEYFRAMES
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
