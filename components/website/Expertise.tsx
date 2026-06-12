@@ -3,28 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const SPECIALTIES = [
-  "Depression & Suicidal Ideation",
-  "Anxiety",
-  "Panic Disorder",
-  "Generalized Anxiety Disorder",
-  "PTSD",
-  "Trauma",
-  "Grief & Bereavement",
-  "Adjustment Issues",
-  "Stress",
-  "Anger Management",
-  "Personal Growth",
-  "Work-Related Stress",
-  "Feeling Stuck in Life",
-  "Emotional Difficulties",
-  "Substance Abuse",
-  "Coping with Illness",
-  "Parenting Challenges",
-  "Relationship Difficulties",
-  "Low Self-Esteem",
-  "Divorce & Separation",
-];
+import { EXPERTISES } from "@/data/expertise";
 
 export default function Expertise() {
   const ref = useRef(null);
@@ -116,7 +95,7 @@ export default function Expertise() {
           {/* Right — specialty tags */}
           <div className="lg:col-span-8">
             <div className="flex flex-wrap gap-3">
-              {SPECIALTIES.map((item, i) => (
+              {EXPERTISES.map((item, i) => (
                 <motion.span
                   key={item}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -124,25 +103,12 @@ export default function Expertise() {
                   transition={{ duration: 0.4, delay: i * 0.03 }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
+                  className="font-body text-sm py-2.5 px-5 text-[#121D2F] hover:text-[#0D9488] bg-transparent hover:bg-[#0d94880f] border border-[#121d2f26] hover:border-[#0D9488] translate-y-0 hover:-translate-y-1"
                   style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "14px",
                     fontWeight: 400,
                     letterSpacing: "0.02em",
-                    padding: "10px 20px",
-                    border:
-                      hovered === i
-                        ? "1px solid #0D9488"
-                        : "1px solid rgba(18, 29, 47, 0.15)",
-                    backgroundColor:
-                      hovered === i
-                        ? "rgba(13, 148, 136, 0.06)"
-                        : "transparent",
-                    color: hovered === i ? "#0D9488" : "#121D2F",
                     cursor: "default",
                     transition: "all 0.25s ease",
-                    transform:
-                      hovered === i ? "translateY(-2px)" : "translateY(0)",
                     display: "inline-block",
                     userSelect: "none",
                   }}
