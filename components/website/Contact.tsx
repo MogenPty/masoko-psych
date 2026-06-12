@@ -34,6 +34,10 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
+  const whatsAppNumber = "27765207876";
+  const phoneNumber = "2700000000";
+  const emailAddress = "masoko@mogen.co.za";
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -58,14 +62,21 @@ export default function Contact() {
     const data = {};
     setSubmitting(false);
     setSubmitted(true);
+
+    setTimeout(() => {
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        preferred_service: "",
+        message: "",
+      });
+      setSubmitted(false);
+    }, 10000);
   };
 
   return (
-    <section
-      id={"contact"}
-      ref={ref}
-      style={{ backgroundColor: "#F8F5F2", padding: "120px 0" }}
-    >
+    <section id={"contact"} ref={ref} className="bg-[#F8F5F2] px-32 py-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-16">
@@ -76,17 +87,11 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-4 mb-8"
             >
-              <div
-                className="w-10 h-px"
-                style={{ backgroundColor: "#0D9488" }}
-              />
+              <div className="w-10 h-px bg-line" />
               <span
+                className="text-line text-xs font-body uppercase"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "11px",
                   letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "#0D9488",
                 }}
               >
                 Get in Touch
@@ -97,17 +102,11 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              style={{
-                fontFamily: "'Instrument Serif', serif",
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                color: "#121D2F",
-                lineHeight: 1.1,
-                marginBottom: "2rem",
-              }}
+              className="h2-clamp"
             >
               Ready to take
               <br />
-              <em style={{ fontStyle: "italic" }}>the first step?</em>
+              <em className="emphasis">the first step?</em>
             </motion.h2>
 
             <motion.p
@@ -135,7 +134,7 @@ export default function Contact() {
               className="flex flex-col gap-4"
             >
               <Link
-                href="https://wa.me/27000000000"
+                href={`https://wa.me/${whatsAppNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group focus-teal"
@@ -177,7 +176,7 @@ export default function Contact() {
               </Link>
 
               <Link
-                href="tel:+27000000000"
+                href={`tel:+${phoneNumber}`}
                 className="flex items-center gap-4 focus-teal"
                 style={{
                   padding: "16px 20px",
@@ -206,29 +205,23 @@ export default function Contact() {
               </Link>
 
               <Link
-                href="mailto:info@ntokozomасоko.co.za"
-                className="flex items-center gap-4 focus-teal"
+                href={`mailto:${emailAddress}`}
+                className="flex items-center gap-4 focus-teal py-4 px-5 bg-transparent min-h-11 font-body text-sm uppercase text-[#121D2F] hover:text-[#0D9488]"
                 style={{
-                  padding: "16px 20px",
                   border: "1px solid rgba(18,29,47,0.15)",
                   color: "#121D2F",
                   textDecoration: "none",
-                  backgroundColor: "transparent",
                   transition: "all 0.3s ease",
-                  minHeight: "44px",
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "14px",
                   fontWeight: 500,
                   letterSpacing: "0.06em",
-                  textTransform: "uppercase",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "#0D9488";
-                  e.currentTarget.style.color = "#0D9488";
+                  e.currentTarget.style.color = "";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = "rgba(18,29,47,0.15)";
-                  e.currentTarget.style.color = "#121D2F";
+                  e.currentTarget.style.color = "";
                 }}
               >
                 ✉ Send an Email
@@ -376,6 +369,7 @@ export default function Contact() {
                         Service Interested In
                       </label>
                       <select
+                        title="services"
                         name="services"
                         className="underline-input focus-teal"
                         value={form.preferred_service}

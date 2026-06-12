@@ -33,10 +33,15 @@
  
   --color-destructive:            var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted-link:             var(--muted-link);
+  --color-muted-link-hover:       var(--muted-link-hover);
  
   --color-border:                 var(--border);
   --color-input:                  var(--input);
   --color-ring:                   var(--ring);
+
+  --color-line:                   var(--line);
  
   /* Chart colors */
   --color-chart-1: var(--chart-1);
@@ -60,6 +65,7 @@
   --color-lichen-teal:  oklch(57.8% 0.118 183);
   --color-sandstone:    oklch(97.3% 0.008 75);
   --color-muted-clay:   oklch(72.8% 0.082 60);
+
  
   /* Font families */
   --font-heading: 'Instrument Serif', Georgia, serif;
@@ -115,10 +121,14 @@
     --destructive:            oklch(60.2% 0.210 25);
     --destructive-foreground: oklch(98.5% 0 0);
  
+    --muted-link:             oklch(97.162% 0.00503 67.271 / 0.45);
+    --muted-link-hover:       oklch(60.023% 0.10385 184.741);
+
     --border:                 oklch(88.2% 0.007 75);
     --input:                  oklch(88.2% 0.007 75);
     --ring:                   oklch(57.8% 0.118 183);
- 
+    --line:                   oklch(60.023% 0.10385 184.741);
+
     --radius: 0.25rem;
   }
  
@@ -148,9 +158,13 @@
     --destructive:            oklch(32.0% 0.115 25);
     --destructive-foreground: oklch(98.5% 0 0);
  
+    --muted-link:             oklch(97.162% 0.00503 67.271 / 0.45);
+    --muted-link-hover:       oklch(60.023% 0.10385 184.741);
+ 
     --border:                 oklch(24.8% 0.043 254);
     --input:                  oklch(24.8% 0.043 254);
     --ring:                   oklch(68.5% 0.135 183);
+    --line:                   oklch(60.023% 0.10385 184.741);
   }
 }
  
@@ -201,6 +215,10 @@
       oklch(57.8% 0.118 183) 80%,
       transparent
     );
+  }
+
+  .emphasis {
+    font-style: italic;
   }
  
   /* Glow / shadow */
@@ -256,7 +274,7 @@
  
   /* Service accordion row */
   .service-line {
-    border-bottom: 1px solid oklch(18.5% 0.047 254 / 0.12);
+    border-bottom: 1px solid oklch(18.517% 0.04737 253.314 / 0.122);
     transition: background 0.3s ease;
   }
   .service-line:hover {
@@ -269,6 +287,23 @@
     bottom: 24px;
     right: 24px;
     z-index: 50;
+  }
+
+  .h2-clamp {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #121D2F;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .author {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(248,245,242,0.35);
+    margin-top: 12px;
   }
  
   /* Nav links with animated underline */

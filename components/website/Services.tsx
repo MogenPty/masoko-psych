@@ -4,70 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
-const PROTEA_IMAGE =
-  "https://media.base44.com/images/public/6a25956cb80a77444ddbd51c/c0d024aa2_generated_image.png";
-const LINEN_IMAGE =
-  "https://media.base44.com/images/public/6a25956cb80a77444ddbd51c/a4f3dab7c_generated_image.png";
-
-const SERVICES = [
-  {
-    number: "01",
-    title: "Individual Therapy",
-    short:
-      "One-on-one support in a safe, confidential environment to explore your challenges and find lasting change.",
-    full: "Individual therapy offers a dedicated space to explore one's challenges and difficulties, gain deeper self-understanding, and develop effective coping strategies and better communication styles. Through a supportive and confidential relationship, adults can work through emotional difficulties, build resilience, and foster personal growth. Whether you're seeking relief from anxiety or depression, navigating major life changes, or simply wanting to better understand yourself, therapy can empower you to live a more balanced and fulfilling life.",
-    image: PROTEA_IMAGE,
-  },
-  {
-    number: "02",
-    title: "Couples Therapy",
-    short:
-      "A safe space for partners to improve communication, resolve conflict, and deepen connection.",
-    full: "Couples counselling provides a safe and supportive space for partners to explore their relationship, improve communication, and resolve conflicts. It helps couples deepen their understanding of each other's needs, feelings, and perspectives, fostering greater empathy and connection. Through counselling, couples can learn effective problem-solving skills, rebuild trust, and navigate life's challenges together — whether married, engaged, or dating.",
-    image: LINEN_IMAGE,
-  },
-  {
-    number: "03",
-    title: "Family Therapy",
-    short:
-      "Helping families reconnect, communicate, and navigate life's most difficult challenges together.",
-    full: "Family therapy is a form of counselling that involves multiple family members working together to improve communication, resolve conflicts, and strengthen relationships within the family unit. It recognises that families function as interconnected systems, where changes in one member can impact the whole family. Family therapy can help address conflictual relationships and find sustainable solutions.",
-    image: PROTEA_IMAGE,
-  },
-  {
-    number: "04",
-    title: "Group Therapy",
-    short:
-      "Shared healing — connecting with others facing similar challenges in a confidential group setting.",
-    full: "Group therapy is a form of psychotherapy where one or more mental health professionals treat several people simultaneously. It creates a safe confidential environment where participants can share their struggles, learn new coping strategies, and practice social skills alongside others facing similar challenges. Group therapy may focus on skills training and psycho-education, or may be for the purpose of mutual support.",
-    image: LINEN_IMAGE,
-  },
-  {
-    number: "05",
-    title: "Adolescent Therapy",
-    short:
-      "Guiding teens through the complexities of identity, emotion, and social pressure with specialist support.",
-    full: "Adolescence is a volatile transition period from childhood to adulthood, marked by rapid physical, emotional, and cognitive changes. Key challenges include managing mental health disorders, navigating intense peer pressure and identity development, coping with body image issues, and balancing risky behaviours with developing autonomy. It is a very critical transition phase as teenagers explore their independence, values, and beliefs. Therapy can be essential in helping a young person navigate this crucial period.",
-    image: PROTEA_IMAGE,
-  },
-  {
-    number: "06",
-    title: "Psychological Assessment",
-    short:
-      "Comprehensive assessments to understand individual characteristics, capabilities, and needs.",
-    full: "Psychological assessment contributes important information to the understanding of individual characteristics and capabilities, through the collection, integration, and interpretation of information about an individual. Such information is obtained through a variety of methods and measures, providing a thorough picture to inform treatment, support academic and workplace placement, and guide personal development.",
-    image: LINEN_IMAGE,
-  },
-  {
-    number: "07",
-    title: "Online Sessions",
-    short:
-      "Flexible, accessible therapy via Microsoft Teams or Zoom — from the comfort of your own space.",
-    full: "Online therapy has become an increasingly popular and accessible way to receive psychological support. It allows individuals to connect with their therapist from the comfort and safety of their homes, removing barriers such as travel, scheduling conflicts, and geographical limitations. Whether you want video calls or phone sessions, online therapy provides a flexible, supportive environment to work on your mental health goals without compromising safety or accessibility.",
-    image: PROTEA_IMAGE,
-  },
-];
+import { SERVICES } from "@/data/services";
 
 export default function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
