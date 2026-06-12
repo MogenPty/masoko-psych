@@ -9,7 +9,7 @@ export const jsonLd = {
   logo: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
   image: `${process.env.NEXT_PUBLIC_SITE_URL}/opengraph-image.png`,
   description:
-    "Full-stack web development, branding & digital marketing for South African businesses.",
+    "Professional psychological care for individuals, couples, families, and adolescents. Over 10 years of experience creating lasting change.",
   telephone: "+27765207876",
   email: "masoko@mogen.co.za",
   foundingDate: "2018", // ← update to your actual founding year

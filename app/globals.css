@@ -42,6 +42,7 @@
   --color-ring:                   var(--ring);
 
   --color-line:                   var(--line);
+  --color-clamp:                  var(--clamp);
  
   /* Chart colors */
   --color-chart-1: var(--chart-1);
@@ -95,7 +96,7 @@
 @layer base {
   :root {
     /* Warm off-white background / sandstone */
-    --background:             oklch(97.3% 0.008 75);
+    --background:             oklch(97.185% 0.00781 73.509);
     --foreground:             oklch(18.5% 0.047 254);
  
     --card:                   oklch(97.3% 0.008 75);
@@ -128,6 +129,8 @@
     --input:                  oklch(88.2% 0.007 75);
     --ring:                   oklch(57.8% 0.118 183);
     --line:                   oklch(60.023% 0.10385 184.741);
+
+    --clamp:                  oklch(23.016% 0.03859 259.926);
 
     --radius: 0.25rem;
   }
@@ -165,6 +168,8 @@
     --input:                  oklch(24.8% 0.043 254);
     --ring:                   oklch(68.5% 0.135 183);
     --line:                   oklch(60.023% 0.10385 184.741);
+
+    --clamp:                  oklch(88.148% 0.03704 259.849);
   }
 }
  
@@ -292,7 +297,7 @@
   .h2-clamp {
     font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 3.5rem);
-    color: #121D2F;
+    color: var(--color-clamp);
     line-height: 1.1;
     margin-bottom: 2rem;
   }
@@ -302,7 +307,7 @@
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(248,245,242,0.35);
+    color: var(--color-muted-link);
     margin-top: 12px;
   }
  
