@@ -7,6 +7,11 @@ import Pricing from "@/components/website/Pricing";
 import Services from "@/components/website/Services";
 import Testimonials from "@/components/website/Testimonials";
 
+/**
+ * Root page component that composes the site's main sections.
+ *
+ * @returns The top-level `<main>` element containing `Hero`, `About`, `Services`, `Expertise`, `Testimonials`, `Pricing`, and `FloatingActions` components.
+ */
 export default function Home() {
   return (
     <main>

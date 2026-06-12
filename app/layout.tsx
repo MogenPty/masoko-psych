@@ -58,6 +58,12 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Application root layout that wraps each page with site chrome, structured metadata, and analytics.
+ *
+ * @param children - Page content rendered between the site navigation and footer
+ * @returns The root `<html>` element for the application containing font classes, a JSON-LD script, the page chrome (Navbar and Footer), and analytics components
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

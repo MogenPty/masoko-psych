@@ -4,6 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+/**
+ * Render a floating contact action button that appears after scrolling and expands to show quick contact links.
+ *
+ * The component listens to window scroll and shows the floating container when the vertical scroll position exceeds 300px. When expanded, it reveals quick links for calling and WhatsApp; the main button toggles the expanded state and animates its icon.
+ *
+ * @returns A JSX element containing the floating action UI with animated entry/exit and expandable contact links.
+ */
 export default function FloatingActions() {
   const [show, setShow] = useState(false);
   const [expanded, setExpanded] = useState(false);

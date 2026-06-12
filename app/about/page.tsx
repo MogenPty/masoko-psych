@@ -3,6 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+/**
+ * Render the About page for Ntokozo Masoko, including header, hero image, biography paragraphs, a quote section, and a credentials grid.
+ *
+ * @returns A React element representing the About page layout and content.
+ */
 export default function AboutPage() {
   return (
     <main style={{ paddingTop: "120px", paddingBottom: "120px" }}>

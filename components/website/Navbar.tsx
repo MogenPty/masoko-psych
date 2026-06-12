@@ -24,6 +24,13 @@ const HOME_ANCHOR_LINKS = [
   { label: "Testimonials", href: "/#testimonials" },
 ];
 
+/**
+ * Renders the top navigation bar with responsive desktop and mobile layouts.
+ *
+ * The component animates into view, switches styling when the page is scrolled, supports in-page anchor navigation (scrolls to hash targets on mount and when link buttons are used), and provides a slide-in mobile menu with navigation links and a CTA.
+ *
+ * @returns The rendered navigation bar element.
+ */
 export function Navbar1() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -229,6 +236,13 @@ export function Navbar1() {
   );
 }
 
+/**
+ * Renders the site's responsive top navigation bar with desktop dropdowns and a mobile slide-in menu.
+ *
+ * The navbar updates its visual style when the page is scrolled, supports a desktop "Services" dropdown (which closes on outside clicks), a mobile "Services" accordion, and smooth in-page anchor navigation for links containing hashes. When a navigation target has a different pathname, the component delegates to the router to navigate to that path; when the current page contains a hash on mount it will scroll to the matching element after a short delay.
+ *
+ * @returns The navbar React element ready to be mounted at the top of the page.
+ */
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);

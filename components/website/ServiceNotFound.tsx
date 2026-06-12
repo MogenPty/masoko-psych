@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 
+/**
+ * Renders a centered "Service not found" page with a headline and a link back to /services.
+ *
+ * @returns The JSX element for the "Service not found" page.
+ */
 export default function ServiceNotFound() {
   return (
     <div className="max-w-4xl mx-auto px-6 pt-48 pb-32 text-center">

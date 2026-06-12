@@ -3,6 +3,11 @@
 import { motion } from "framer-motion";
 import Contact from "@/components/website/Contact";
 
+/**
+ * Renders the contact page with an animated hero section and the site's contact UI.
+ *
+ * @returns The page React element containing the animated heading/intro and the reusable `Contact` section (form and channels).
+ */
 export default function ContactPage() {
   return (
     <main style={{ paddingTop: "100px" }}>

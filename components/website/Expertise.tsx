@@ -5,6 +5,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { EXPERTISES } from "@/data/expertise";
 
+/**
+ * Render the "Areas of Expertise" section and animate its content when the section enters the viewport.
+ *
+ * The component displays a labelled heading, descriptive text, and a responsive list of expertise tags that animate into view with staggered timing. It attaches an intersection observer to start animations once the section is visible.
+ *
+ * @returns The Expertise section as a React element
+ */
 export default function Expertise() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
