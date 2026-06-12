@@ -7,6 +7,14 @@ import Footer from "@/components/website/Footer";
 import Navbar from "@/components/website/Navbar";
 import { SERVICES } from "@/data/services";
 
+/**
+ * Render the Services landing page with an animated header and an animated list of service links.
+ *
+ * The page displays a hero section (label, title, description) and iterates over `SERVICES` to render
+ * numbered service rows that link to `/services/[slug]`.
+ *
+ * @returns The JSX element for the Services page containing the header and service link list.
+ */
 export default function ServicesPage() {
   return (
     <main style={{ paddingTop: "120px", paddingBottom: "120px" }}>

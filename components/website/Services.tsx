@@ -7,6 +7,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SERVICES } from "@/data/services";
 
+/**
+ * Render the Services section with an animated, accordion-style list of services.
+ *
+ * Triggers entrance animations when the section enters the viewport and exposes a "Book this service"
+ * action that scrolls the page to the element with id "contact".
+ *
+ * @returns The Services section element containing animated accordion items for each service, including expanded details and images when open.
+ */
 export default function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const ref = useRef(null);

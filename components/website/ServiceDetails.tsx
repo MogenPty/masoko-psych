@@ -11,6 +11,14 @@ interface Props {
   slug: string;
 }
 
+/**
+ * Renders the detailed page for the service identified by `slug`.
+ *
+ * Looks up the service by `slug` and renders the hero, content, sidebar, and previous/next navigation; renders `ServiceNotFound` when no matching service exists.
+ *
+ * @param slug - The service slug used to find and display the corresponding service
+ * @returns The rendered service detail page element, or the `ServiceNotFound` element when no matching service is found
+ */
 export default function ServiceDetails({ slug }: Props) {
   const service = SERVICES.find((s) => s.slug === slug);
   const currentIndex = SERVICES.findIndex((s) => s.slug === slug);

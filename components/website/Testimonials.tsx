@@ -5,6 +5,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { TESTIMONIALS } from "@/data/testimonials";
 
+/**
+ * Render the testimonials section with an animated header, a responsive grid of testimonial cards, and a confidentiality note.
+ *
+ * The component observes its section entering the viewport and triggers entrance animations for the header, each card, and the disclaimer when visible.
+ *
+ * @returns The testimonials section as a JSX element
+ */
 export default function Testimonials() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);

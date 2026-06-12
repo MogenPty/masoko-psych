@@ -6,6 +6,11 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Renders the page's About section, including a years motif, credentials list, biography copy, a quoted testimonial, and a "Read full profile" call-to-action with entrance animations triggered when the section enters the viewport.
+ *
+ * @returns The About section React element containing animated layout, credential items, biography paragraphs, quote attribution, and a link to the full profile.
+ */
 export default function About() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);

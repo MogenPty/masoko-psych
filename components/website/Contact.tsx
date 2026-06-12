@@ -20,6 +20,15 @@ const SERVICES = [
   "Not Sure Yet",
 ];
 
+/**
+ * Renders the Contact section with channel links and a controlled contact form.
+ *
+ * The component shows WhatsApp, phone, and email contact options, manages form state,
+ * handles submission lifecycle (including a temporary success panel), and triggers
+ * entrance animations when the section enters the viewport.
+ *
+ * @returns The Contact section as a JSX element.
+ */
 export default function Contact() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
