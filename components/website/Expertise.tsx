@@ -103,7 +103,7 @@ export default function Expertise() {
                   transition={{ duration: 0.4, delay: i * 0.03 }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
-                  className="font-body text-sm py-2.5 px-5 text-[#121D2F] hover:text=[#0D9488] bg-transparent hover:bg-[#0d94880f] border border-[#121d2f26] hover:border-[#0D9488] translate-y-0 hover:-translate-y-1"
+                  className="font-body text-sm py-2.5 px-5 text-[#121D2F] hover:text-[#0D9488] bg-transparent hover:bg-[#0d94880f] border border-[#121d2f26] hover:border-[#0D9488] translate-y-0 hover:-translate-y-1"
                   style={{
                     fontWeight: 400,
                     letterSpacing: "0.02em",

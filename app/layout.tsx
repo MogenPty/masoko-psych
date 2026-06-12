@@ -22,6 +22,9 @@ const intrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://masoko.mogen.co.za";
+
 export const metadata: Metadata = {
   title: {
     default:
@@ -34,9 +37,9 @@ export const metadata: Metadata = {
   authors: [{ name: "MASOKO" }],
   creator: "MASOKO",
   publisher: "MASOKO",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
-    url: process.env.NEXT_PUBLIC_SITE_URL!,
+    url: SITE_URL,
     siteName: "MASOKO",
     locale: "en_ZA",
     type: "website",
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL!,
+    canonical: SITE_URL,
   },
 };
 

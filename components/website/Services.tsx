@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SERVICES } from "@/data/services";
 
@@ -10,6 +11,7 @@ export default function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,9 +24,9 @@ export default function Services() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  function goto(url: string) {
+    router.push(url);
+  }
 
   return (
     <section
@@ -191,7 +193,7 @@ export default function Services() {
                         </p>
                         <button
                           type="button"
-                          onClick={scrollToContact}
+                          onClick={() => goto(`/services/${service.slug}`)}
                           className="focus-teal mt-6"
                           style={{
                             backgroundColor: "transparent",
@@ -217,7 +219,7 @@ export default function Services() {
                             e.currentTarget.style.color = "#0D9488";
                           }}
                         >
-                          Book this service
+                          Learn More
                         </button>
                       </div>
                       <div
