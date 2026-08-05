@@ -1,10 +1,16 @@
 /** biome-ignore-all lint/suspicious/noAssignInExpressions: TODO: Resolve Later */
 "use client";
 
+import { useRouter } from "next/navigation";
+import { anchorNav } from "@/lib/utils";
+
 export default function Footer() {
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const router = useRouter();
+  const handleAnchorNav = (path: string) => anchorNav(path, router);
 
   return (
     <footer
@@ -102,17 +108,16 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               {[
-                { label: "About", id: "#about" },
-                { label: "Services", id: "#services" },
-                { label: "Expertise", id: "#expertise" },
-                { label: "Testimonials", id: "#testimonials" },
-                { label: "Pricing", id: "#pricing" },
-                { label: "Contact", id: "#contact" },
+                { label: "About", id: "/about" },
+                { label: "Services", id: "/services" },
+                { label: "Expertise", id: "/#expertise" },
+                { label: "Testimonials", id: "/#testimonials" },
+                { label: "Contact", id: "/contact" },
               ].map((link) => (
                 <button
                   type="button"
                   key={link.id}
-                  onClick={() => scrollTo(link.id)}
+                  onClick={() => handleAnchorNav(link.id)}
                   style={{
                     background: "none",
                     border: "none",

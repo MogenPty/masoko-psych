@@ -1,10 +1,10 @@
-import About from "@/components/website/About";
-import Expertise from "@/components/website/Expertise";
-import FloatingActions from "@/components/website/FloatingActions";
-import Hero from "@/components/website/Hero";
-import Pricing from "@/components/website/Pricing";
+import About from "@/components/blocks/About";
+import Expertise from "@/components/blocks/Expertise";
+import FloatingActions from "@/components/blocks/FloatingActions";
+import Hero from "@/components/blocks/Hero";
+import Pricing from "@/components/blocks/Pricing";
+import Testimonials from "@/components/blocks/Testimonials";
 import Services from "@/components/website/Services";
-import Testimonials from "@/components/website/Testimonials";
 
 export default function Home() {
   return (

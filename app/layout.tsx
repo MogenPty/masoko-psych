@@ -3,8 +3,8 @@ import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "@/components/website/Footer";
-import Navbar from "@/components/website/Navbar";
+import Footer from "@/components/blocks/Footer";
+import Navbar from "@/components/blocks/Navbar";
 import { jsonLd } from "@/data/json-ld";
 import { BASE_KEYWORDS } from "@/data/seo";
 
@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 const intrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+  variable: "--instrument-serif",
   weight: ["400"],
   style: ["italic"],
   subsets: ["latin"],
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Professional psychological care for individuals, couples, families, and adolescents. Over 10 years of experience creating lasting change.",
   keywords: BASE_KEYWORDS,
   authors: [{ name: "MASOKO" }],
-  creator: "MASOKO",
+  creator: "Masoko Psychological Clinic",
   publisher: "MASOKO",
   metadataBase: new URL(SITE_URL),
   openGraph: {
@@ -79,7 +79,7 @@ export default function RootLayout({
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Needed for the JSON-LD
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div style={{ backgroundColor: "#F8F5F2", minHeight: "100vh" }}>
+        <div className="bg-link min-h-full">
           <Navbar />
           {children}
 

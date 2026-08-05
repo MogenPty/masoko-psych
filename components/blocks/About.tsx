@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import Title from "./Title";
 
 export default function About() {
   const ref = useRef(null);
@@ -22,11 +23,7 @@ export default function About() {
   }, []);
 
   return (
-    <section
-      id={"about"}
-      ref={ref}
-      style={{ backgroundColor: "#121D2F", padding: "120px 0" }}
-    >
+    <section id={"about"} ref={ref} className="bg-clamp py-32 px-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 xl:px-24">
         {/* Section label */}
         <motion.div
@@ -35,18 +32,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-4 mb-20"
         >
-          <div className="w-10 h-px" style={{ backgroundColor: "#0D9488" }} />
-          <span
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "11px",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "#0D9488",
-            }}
-          >
-            About
-          </span>
+          <Title title="About" color="common-green" />
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
@@ -56,15 +42,10 @@ export default function About() {
               initial={{ opacity: 0 }}
               animate={visible ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
-              className="select-none"
+              className="select-none font-heading leading-[0.85] text-transparent tracking-tighter pointer-events-none"
               style={{
-                fontFamily: "'Instrument Serif', serif",
                 fontSize: "clamp(8rem, 18vw, 16rem)",
-                lineHeight: 0.85,
-                color: "transparent",
                 WebkitTextStroke: "1px rgba(13, 148, 136, 0.2)",
-                letterSpacing: "-0.04em",
-                pointerEvents: "none",
               }}
             >
               10+
@@ -73,14 +54,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.4 }}
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "13px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "#D4A373",
-                marginTop: "-1rem",
-              }}
+              className="font-body text-sm tracking-widest uppercase -mt-0.5 text-[#D4A373]"
             >
               Years of expertise
             </motion.p>
@@ -104,29 +78,12 @@ export default function About() {
                 },
               ].map((item) => (
                 <div key={item.label} className="flex gap-3 items-start">
-                  <div
-                    className="w-px mt-1 shrink-0"
-                    style={{ height: "36px", backgroundColor: "#0D9488" }}
-                  />
+                  <div className="w-px mt-1 shrink-0 bg-common-green h-9" />
                   <div>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontWeight: 500,
-                        fontSize: "14px",
-                        color: "#F8F5F2",
-                      }}
-                    >
+                    <p className="font-body text-sm text-link font-medium">
                       {item.label}
                     </p>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "12px",
-                        color: "rgba(248,245,242,0.45)",
-                        marginTop: "2px",
-                      }}
-                    >
+                    <p className="font-body text-xs mt-0.5 text-muted-link">
                       {item.sub}
                     </p>
                   </div>
@@ -141,12 +98,9 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-heading text-link mb-8 leading-[1.1]"
               style={{
-                fontFamily: "'Instrument Serif', serif",
                 fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                color: "#F8F5F2",
-                marginBottom: "2rem",
-                lineHeight: 1.1,
               }}
             >
               Hello, I&apos;m Ntokozo Masoko.
@@ -156,45 +110,21 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 font-body text-lg/[1.75] font-light text-link-light"
             >
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.125rem",
-                  lineHeight: 1.75,
-                  color: "rgba(248,245,242,0.75)",
-                  fontWeight: 300,
-                }}
-              >
+              <p>
                 I am a Clinical Psychologist working in private practice in
                 Randburg and Soweto, Johannesburg. I have a deep passion for
                 mental health and a genuine commitment to working with people —
                 creating meaningful and lasting change in people&apos;s lives.
               </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.125rem",
-                  lineHeight: 1.75,
-                  color: "rgba(248,245,242,0.75)",
-                  fontWeight: 300,
-                }}
-              >
+              <p>
                 Over more than a decade, I have worked across many different
                 sectors and gained expertise in working with individuals,
                 couples, families, and groups, as well as conducting
                 psychometric assessments.
               </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.125rem",
-                  lineHeight: 1.75,
-                  color: "rgba(248,245,242,0.75)",
-                  fontWeight: 300,
-                }}
-              >
+              <p>
                 My main goal is always to provide a safe, respectful, nurturing,
                 and containing therapeutic environment — where you feel truly
                 seen and supported. Whether you are navigating personal
@@ -211,22 +141,14 @@ export default function About() {
               className="mt-10 pt-10"
               style={{ borderTop: "1px solid rgba(248,245,242,0.1)" }}
             >
-              <p
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontStyle: "italic",
-                  fontSize: "1.4rem",
-                  color: "#D4A373",
-                  lineHeight: 1.5,
-                }}
-              >
+              <p className="font-heading italic text-[1.4rem]/normal text-highlight">
                 &quot;Professionalism and working towards a desired end with
                 purpose is my highest value.&quot;
               </p>
               <p className="author">— Ntokozo Masoko</p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 mt-8 group focus-teal text-muted-link hover:text-muted-link-hover uppercase text-sm font-body"
+                className="inline-flex items-center gap-2 mt-8 group focus-teal text-muted-link hover:text-common-green uppercase text-sm font-body"
                 style={{
                   letterSpacing: "0.1em",
                   textDecoration: "none",

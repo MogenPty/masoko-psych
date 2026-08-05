@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SERVICES } from "@/data/services";
+import { anchorNav } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -62,14 +63,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleAnchorNav = (href: string) => {
-    const [path, hash] = href.split("#");
-
-    if (window.location.pathname !== path) router.push(href);
-
-    if (hash)
-      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const handleAnchorNav = (path: string) => anchorNav(path, router);
 
   return (
     <>
@@ -78,9 +72,7 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled
-            ? "bg-[#F8F5F2]/95 backdrop-blur-md shadow-sm "
-            : "bg-transparent"
+          scrolled ? "bg-link/95 backdrop-blur-md shadow-sm " : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
@@ -132,16 +124,11 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.2 }}
+                    className="bg-link z-50 min-w-65 translate-x-1/2 left-1/2 absolute"
                     style={{
-                      position: "absolute",
                       top: "calc(100% + 20px)",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      backgroundColor: "#F8F5F2",
                       border: "1px solid rgba(18,29,47,0.1)",
                       boxShadow: "0 12px 40px rgba(18,29,47,0.1)",
-                      minWidth: "260px",
-                      zIndex: 50,
                     }}
                   >
                     <Link
@@ -201,25 +188,14 @@ export default function Navbar() {
                 type="button"
                 key={link.href}
                 onClick={() => handleAnchorNav(link.href)}
-                className="nav-link focus-teal"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                }}
+                className="nav-link focus-teal font-body bg-transparent border-0 cursor-pointer p-0"
               >
                 {link.label}
               </button>
             ))}
 
             {/* Contact */}
-            <Link
-              href="/contact"
-              className="nav-link focus-teal"
-              style={{ fontFamily: "'Inter', sans-serif" }}
-            >
+            <Link href="/contact" className="nav-link focus-teal font-body">
               Contact
             </Link>
           </div>
@@ -228,29 +204,15 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/contact"
-              className="focus-teal"
+              className="focus-teal text-white bg-common-green hover:bg-transparent hover:text-common-green border-2 border-common-green uppercase font-medium font-body"
               style={{
-                backgroundColor: "#0D9488",
-                color: "#F8F5F2",
-                fontFamily: "'Inter', sans-serif",
                 fontSize: "13px",
-                fontWeight: 500,
                 letterSpacing: "0.08em",
-                textTransform: "uppercase",
                 padding: "12px 28px",
-                border: "2px solid #0D9488",
                 textDecoration: "none",
                 display: "inline-block",
                 transition: "all 0.3s ease",
                 minHeight: "44px",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = "#0D9488";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#0D9488";
-                e.currentTarget.style.color = "#F8F5F2";
               }}
             >
               Book a Session
@@ -260,7 +222,7 @@ export default function Navbar() {
           {/* Mobile menu toggle */}
           <button
             type="button"
-            className={`lg:hidden focus-teal p-2 min-w-11 min-h-11 ${menuOpen ? "text-white" : "text-[#121D2F]"}`}
+            className={`lg:hidden focus-teal p-2 min-w-11 min-h-11 ${menuOpen ? "text-white" : "text-clamp"}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -277,8 +239,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="fixed inset-0 z-30 overflow-y-auto"
-            style={{ backgroundColor: "#121D2F", paddingTop: "80px" }}
+            className="fixed inset-0 z-30 overflow-y-auto pt-20 bg-clamp"
           >
             <div className="flex flex-col gap-0 px-8 py-12">
               {/* About */}

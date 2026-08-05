@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 
-const HERO_IMAGE =
-  "https://media.base44.com/images/public/6a25956cb80a77444ddbd51c/0717b604e_generated_image.png";
+const HERO_IMAGE = "/images/office-chair.png";
 
 export default function Hero() {
   const scrollToAbout = () => {
@@ -16,10 +15,7 @@ export default function Hero() {
   };
 
   return (
-    <section
-      className="relative min-h-screen flex"
-      style={{ backgroundColor: "#F8F5F2" }}
-    >
+    <section className="relative min-h-screen flex">
       {/* Left — Typography block */}
       <div className="flex flex-col justify-end pb-20 px-6 lg:px-16 xl:px-24 pt-32 w-full lg:w-[52%] z-10 relative">
         {/* Thin vertical rule */}
@@ -62,16 +58,7 @@ export default function Hero() {
             <br />
             to grow.
           </h1>
-          <p
-            className="mb-12 max-w-md"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1.125rem",
-              lineHeight: 1.7,
-              color: "rgba(18, 29, 47, 0.65)",
-              fontWeight: 300,
-            }}
-          >
+          <p className="mb-12 max-w-md font-body text-lg/[1.7] font-light text-subheader">
             Professional psychological care for individuals, couples, families,
             and adolescents. Over 10 years of experience creating lasting
             change.
@@ -263,7 +250,14 @@ export default function Hero() {
 
       {/* Mobile hero image */}
       <div className="lg:hidden absolute inset-0 z-0" style={{ opacity: 0.12 }}>
-        <img src={HERO_IMAGE} alt="" className="w-full h-full object-cover" />
+        <Image
+          width={1024}
+          height={1024}
+          src={HERO_IMAGE}
+          alt=""
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
       </div>
     </section>
   );

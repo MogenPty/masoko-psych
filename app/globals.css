@@ -3,7 +3,7 @@
 /* ============================================================
    THEME — replaces tailwind.config.js
    ============================================================ */
-@theme {
+@theme inline {
   /* Radius */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -12,6 +12,8 @@
   /* Semantic color tokens — now referencing oklch vars directly */
   --color-background:             var(--background);
   --color-foreground:             var(--foreground);
+
+  --color-common-green:           var(--common-green);
  
   --color-card:                   var(--card);
   --color-card-foreground:        var(--card-foreground);
@@ -34,15 +36,17 @@
   --color-destructive:            var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
+  --color-link:                   var(--link);
   --color-muted-link:             var(--muted-link);
-  --color-muted-link-hover:       var(--muted-link-hover);
+  --color-link-light:             var(--link-light);
  
   --color-border:                 var(--border);
   --color-input:                  var(--input);
   --color-ring:                   var(--ring);
 
-  --color-line:                   var(--line);
   --color-clamp:                  var(--clamp);
+  --color-subheader:              var(--subheader);
+  --color-highlight:              var(--highlight);
  
   /* Chart colors */
   --color-chart-1: var(--chart-1);
@@ -66,7 +70,6 @@
   --color-lichen-teal:  oklch(57.8% 0.118 183);
   --color-sandstone:    oklch(97.3% 0.008 75);
   --color-muted-clay:   oklch(72.8% 0.082 60);
-
  
   /* Font families */
   --font-heading: 'Instrument Serif', Georgia, serif;
@@ -93,11 +96,13 @@
    CSS CUSTOM PROPERTIES — light & dark modes
    All semantic tokens are now full oklch() values.
    ============================================================ */
-@layer base {
+/* @layer base { */
   :root {
     /* Warm off-white background / sandstone */
     --background:             oklch(97.185% 0.00781 73.509);
     --foreground:             oklch(18.5% 0.047 254);
+
+    --common-green:           oklch(60.023% 0.10385 184.741); /*#0D9488*/
  
     --card:                   oklch(97.3% 0.008 75);
     --card-foreground:        oklch(18.5% 0.047 254);
@@ -122,15 +127,19 @@
     --destructive:            oklch(60.2% 0.210 25);
     --destructive-foreground: oklch(98.5% 0 0);
  
+    --link:                   oklch(97.162% 0.00503 67.271); /*#F8F5F2*/
     --muted-link:             oklch(97.162% 0.00503 67.271 / 0.45);
-    --muted-link-hover:       oklch(60.023% 0.10385 184.741);
+    --link-light:             oklch(97.162% 0.00503 67.271 / 0.75);
 
     --border:                 oklch(88.2% 0.007 75);
     --input:                  oklch(88.2% 0.007 75);
     --ring:                   oklch(57.8% 0.118 183);
-    --line:                   oklch(60.023% 0.10385 184.741);
 
-    --clamp:                  oklch(23.016% 0.03859 259.926);
+    --clamp:                  oklch(23.016% 0.03859 259.926); /*#121D2F*/
+    --subheader:              oklch(23.016% 0.03859 259.926 / 0.65);
+    --highlight:              oklch(75.001% 0.08602 65.28); /*#D4A373*/
+
+    --test:#121d2f;
 
     --radius: 0.25rem;
   }
@@ -138,6 +147,8 @@
   .dark {
     --background:             oklch(11.5% 0.035 254);
     --foreground:             oklch(97.3% 0.008 75);
+
+    --common-green:           oklch(60.023% 0.10385 184.741);
  
     --card:                   oklch(13.8% 0.040 254);
     --card-foreground:        oklch(97.3% 0.008 75);
@@ -161,17 +172,19 @@
     --destructive:            oklch(32.0% 0.115 25);
     --destructive-foreground: oklch(98.5% 0 0);
  
+    --link:                   oklch(97.162% 0.00503 67.271);
     --muted-link:             oklch(97.162% 0.00503 67.271 / 0.45);
-    --muted-link-hover:       oklch(60.023% 0.10385 184.741);
+    --link-light:             oklch(97.162% 0.00503 67.271 / 0.75);
  
     --border:                 oklch(24.8% 0.043 254);
     --input:                  oklch(24.8% 0.043 254);
     --ring:                   oklch(68.5% 0.135 183);
-    --line:                   oklch(60.023% 0.10385 184.741);
 
     --clamp:                  oklch(88.148% 0.03704 259.849);
+    --subheader:              oklch(88.148% 0.03704 259.849 / 0.65);
+    --highlight:              oklch(75.001% 0.08602 65.28); /*#D4A373*/
   }
-}
+/* } */
  
 /* ============================================================
    BASE STYLES
@@ -292,6 +305,14 @@
     bottom: 24px;
     right: 24px;
     z-index: 50;
+  }
+
+  .h1-clamp {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--color-clamp);
+    line-height: 1.1;
+    margin-bottom: 1rem;
   }
 
   .h2-clamp {
