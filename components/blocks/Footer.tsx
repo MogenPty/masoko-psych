@@ -3,6 +3,8 @@
 
 import { useRouter } from "next/navigation";
 import { anchorNav } from "@/lib/utils";
+import { ContactDetails } from "@/data/contact-details";
+import { Mail, Phone, WhatsApp } from "@deemlol/next-icons";
 
 export default function Footer() {
   const scrollTo = (id: string) => {
@@ -206,33 +208,22 @@ export default function Footer() {
               </div>
               <div
                 style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "13px",
+                  color: "rgba(248,245,242,0.5)",
                   borderTop: "1px solid rgba(248,245,242,0.08)",
                   paddingTop: "16px",
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "13px",
-                    color: "rgba(248,245,242,0.5)",
-                  }}
-                >
-                  Mon – Fri: 09:00 – 18:00
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "13px",
-                    color: "rgba(248,245,242,0.5)",
-                    marginTop: "4px",
-                  }}
-                >
-                  Saturday: 09:00 – 13:00
+                <p>Mon - Fri: 09:00 - 18:00</p>
+                <p>Saturday: 09:00 - 13:00</p>
+                <p>
+                  Sunday: <em>Closed</em>
                 </p>
               </div>
-              <div>
+              <div className="flex gap-3">
                 <a
-                  href="https://wa.me/27000000000"
+                  href={`https://wa.me/${ContactDetails.whatsAppNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -248,7 +239,48 @@ export default function Footer() {
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
-                  WhatsApp →
+                  <WhatsApp
+                    size={20}
+                    fillOpacity={1}
+                    fill="#0D9488"
+                    strokeWidth={0}
+                  />
+                </a>
+                <a
+                  href={`tel:${ContactDetails.phoneNumber}`}
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "13px",
+                    color: "#0D9488",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "opacity 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  <Phone size={20} />
+                </a>
+                <a
+                  href={`mailto:${ContactDetails.emailAddress}`}
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "13px",
+                    color: "#0D9488",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "opacity 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  <Mail size={20} />
                 </a>
               </div>
             </div>
