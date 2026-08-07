@@ -9,7 +9,7 @@ export const SERVICES = [
     title: "Individual Therapy",
     slug: "individual-therapy",
     short: `Individual therapy, which is sometimes also called “psychotherapy” or
-“counselling” is a process through which an individual works one-on-one with a trained therapist- in
+“counselling”, is a process through which an individual works one-on-one with a trained therapist, in
 a safe, caring and confidential environment.`,
     full: `Individual therapy offers a dedicated
 space to explore one’s challenges/difficulties, gain deeper self-understanding, and develop effective
@@ -27,11 +27,10 @@ balanced and fulfilling life.`,
     number: "02",
     title: "Couples Therapy",
     slug: "couples-therapy",
-    short: `Couple therapy (couple counselling) is a process through which a couple (married,
-engaging, dating) works with a trained therapist to identify specific areas of conflict and/or areas of
+    short: `Couples therapy (couple counselling) is a process through which couples (married,
+engaged, or dating) work with a trained therapist to identify specific areas of conflict and/or areas of
 their relationship they would like to explore, change, or develop.`,
-    full: `Couples
-counselling provides a safe and supportive space for partners to explore their relationship, improve
+    full: `Couples counselling provides a safe and supportive space for partners to explore their relationship, improve
 communication, and resolve conflicts. It helps couples deepen their understanding of each other’s
 needs, feelings, and perspectives, fostering greater empathy and connection. Through counselling,
 couples can learn effective problem-solving skills, rebuild trust, and navigate life’s challenges
@@ -66,7 +65,7 @@ whole family.`,
     title: "Group Therapy",
     slug: "group-therapy",
     short:
-      "In group therapy members of the group are usually seen for a common condition, common challenges or common problems.",
+      "In group therapy, members of the group are usually seen for a common condition, common challenges or common problems.",
     full: `Group therapy is a form of
 psychotherapy where one or more mental health professionals treat several people simultaneously.
 It creates a safe confidential environment where participants can share their struggles, learn new
@@ -84,16 +83,16 @@ supporting each other as group members.`,
     title: "Adolescent Individual Therapy",
     slug: "adolescent-individual-therapy",
     short: `Adolescence is a crucial yet often challenging stage of life. Teens explore their
-identify, push boundaries, and navigate new social pressures. During this time, they may struggle
+identity, push boundaries, and navigate new social pressures. During this time, they may struggle
 with emotional, academic, or social difficulties, often lacking the support they need to cope
 effectively.`,
     full: `Adolescence is a volatile transition period from childhood to adulthood
-marked by rapid physical. Emotional, and cognitive changes. Key challenges include managing
+marked by rapid physical, emotional, and cognitive changes. Key challenges include managing
 mental health disorders (like depression and anxiety), navigating intense peer pressure and identity
 development, coping with body image issues, and balancing risky behaviours with developing
-autonomy. it is a very critical transition phase teenagers explore their independence, values and
+autonomy. It is a critical transition phase in which teenagers explore their independence, values, and
 beliefs to answer the central question: WHO AM I? Seeking therapy may at times be very necessary
-to helping a young person navigate this crucial period of their development.`,
+to help a young person navigate this crucial period of their development.`,
     image: PROTEA_IMAGE,
     whoIsItFor:
       "Young people aged approximately 13-21 who are struggling with identity, school pressure, peer relationships, emotional regulation, anxiety, depression, or behavioural challenges.",
@@ -122,7 +121,7 @@ methods and measures.`,
     short: `VIA TEAMS or ZOOM - Whether you want video calls or phone sessions, online
 therapy provides a flexible, supportive environment to work on your mental health goals without
 compromising safety or accessibility.`,
-    full: `Online therapy has become increasingly popular and an accessible way to receive psychological support. It allows individuals to connect with
+    full: `Online therapy has become increasingly popular and accessible way to receive psychological support. It allows individuals to connect with
 their therapist from the comfort and safety of their homes, removing barriers such as travel,
 scheduling conflicts and geographical limitations.`,
     image: PROTEA_IMAGE,

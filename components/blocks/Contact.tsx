@@ -89,17 +89,17 @@ export default function Contact({
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-16">
           <div className="lg:col-span-5">
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={visible ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="flex items-center gap-4 mb-8"
             >
               <div className="w-10 h-px bg-common-green" />
-              <span className="text-common-green text-xs font-body uppercase tracking-[0.2em]">
+              <h1 className="text-common-green text-xs font-body uppercase tracking-[0.2em]">
                 Get in Touch
-              </span>
-            </motion.h1>
+              </h1>
+            </motion.div>
 
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -147,18 +147,11 @@ export default function Contact({
                   className="flex items-center gap-4 group focus-teal bg-[#25D366] hover:bg-[#1ea855]"
                   style={{
                     padding: "16px 20px",
-                    backgroundColor: "#25D366",
                     color: "#fff",
                     textDecoration: "none",
                     transition: "all 0.3s ease",
                     minHeight: "44px",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#1ea855")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#25D366")
-                  }
                 >
                   <WhatsApp
                     size={24}
