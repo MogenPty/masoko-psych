@@ -2,13 +2,18 @@
 /** biome-ignore-all lint/suspicious/noAssignInExpressions: TODO: Remove the use of inline css */
 "use client";
 
+import { Mail, Phone, WhatsApp } from "@deemlol/next-icons";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Mail, Phone, WhatsApp } from "@deemlol/next-icons";
-
+import AddressSection from "@/components/ui/AddressSection";
 import { ContactDetails } from "@/data/contact-details";
+
+const ADDRESS_COORDS = [
+  { lat: -26.074022, lng: 27.933273 },
+  { lat: -26.279173, lng: 27.806164 },
+];
 
 const SERVICES = [
   "Individual Therapy",
@@ -459,6 +464,29 @@ export default function Contact({
             </motion.div>
           </div>
         </div>
+
+        {/* Address sections with maps */}
+        {ContactDetails.addresses?.map((address, index) => (
+          <motion.div
+            key={address.line1.replaceAll(" ", "-")}
+            initial={{ opacity: 0, y: 30 }}
+            animate={visible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
+            className="mt-16"
+          >
+            <AddressSection
+              address={address}
+              mapPosition={index % 2 === 0 ? "right" : "left"}
+              label={
+                address.town
+                  ? `${address.town} Practice`
+                  : address.city
+                    ? `${address.city} Practice`
+                    : "Our Address"
+              }
+            />
+          </motion.div>
+        ))}
       </div>
     </section>
   );
