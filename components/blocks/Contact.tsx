@@ -10,11 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import AddressSection from "@/components/ui/AddressSection";
 import { ContactDetails } from "@/data/contact-details";
 
-const ADDRESS_COORDS = [
-  { lat: -26.074022, lng: 27.933273 },
-  { lat: -26.279173, lng: 27.806164 },
-];
-
 const SERVICES = [
   "Individual Therapy",
   "Couples Therapy",
