@@ -14,6 +14,7 @@ interface Props {
 export default function ServiceDetails({ slug }: Props) {
   const service = SERVICES.find((s) => s.slug === slug);
   const currentIndex = SERVICES.findIndex((s) => s.slug === slug);
+
   const prev = SERVICES[currentIndex - 1] || null;
   const next = SERVICES[currentIndex + 1] || null;
 

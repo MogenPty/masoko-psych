@@ -54,6 +54,17 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-col gap-6 font-light text-[rgba(18, 29, 47, 0.72)] text-lg/[1.8]">
+            <div className="pl-6 font-heading italic leading-6 text-primary text-2xl flex gap-3 items-start border-l-common-green border-l">
+              I completed my professional psychology training at the University
+              of Zululand, where I obtained a Master’s degree in Clinical
+              Psychology. I completed my internship at Sterkfontein Psychiatric
+              Hospital and my community service at Leratong Hospital.
+              <br />
+              <br />I employ an integrative framework, with CBT being the
+              modality in which I am deeply rooted. I am currently also training
+              in Imago therapy, and I am very excited to be embarking on this
+              new journey of training and professional development.
+            </div>
             <p>
               Ntokozo Masoko is a qualified Clinical Psychologist working in
               private practice across Randburg and Soweto, Johannesburg. With

@@ -8,9 +8,15 @@ export const SERVICES = [
     number: "01",
     title: "Individual Therapy",
     slug: "individual-therapy",
-    short:
-      "One-on-one support in a safe, confidential environment to explore your challenges and find lasting change.",
-    full: "Individual therapy offers a dedicated space to explore one's challenges and difficulties, gain deeper self-understanding, and develop effective coping strategies and better communication styles. Through a supportive and confidential relationship, adults can work through emotional difficulties, build resilience, and foster personal growth. Whether you're seeking relief from anxiety or depression, navigating major life changes, or simply wanting to better understand yourself, therapy can empower you to live a more balanced and fulfilling life.",
+    short: `Individual therapy, which is sometimes also called “psychotherapy” or
+“counselling” is a process through which an individual works one-on-one with a trained therapist- in
+a safe, caring and confidential environment.`,
+    full: `Individual therapy offers a dedicated
+space to explore one’s challenges/difficulties, gain deeper self-understanding, and develop effective
+coping strategies and better communication styles. Through a supportive and confidential relationship with a therapist, adults can work through emotional difficulties, build resilience, foster
+personal growth. Whether you’re seeking relief from anxiety or depression, navigating major life
+changes, or simply wanting to better understand yourself, therapy can empower you to live a more
+balanced and fulfilling life.`,
     image: PROTEA_IMAGE,
     whoIsItFor:
       "Adults navigating anxiety, depression, grief, life transitions, trauma, relationship difficulties, or anyone seeking greater self-understanding and personal growth.",
@@ -21,9 +27,15 @@ export const SERVICES = [
     number: "02",
     title: "Couples Therapy",
     slug: "couples-therapy",
-    short:
-      "A safe space for partners to improve communication, resolve conflict, and deepen connection.",
-    full: "Couples counselling provides a safe and supportive space for partners to explore their relationship, improve communication, and resolve conflicts. It helps couples deepen their understanding of each other's needs, feelings, and perspectives, fostering greater empathy and connection. Through counselling, couples can learn effective problem-solving skills, rebuild trust, and navigate life's challenges together — whether married, engaged, or dating.",
+    short: `Couple therapy (couple counselling) is a process through which a couple (married,
+engaging, dating) works with a trained therapist to identify specific areas of conflict and/or areas of
+their relationship they would like to explore, change, or develop.`,
+    full: `Couples
+counselling provides a safe and supportive space for partners to explore their relationship, improve
+communication, and resolve conflicts. It helps couples deepen their understanding of each other’s
+needs, feelings, and perspectives, fostering greater empathy and connection. Through counselling,
+couples can learn effective problem-solving skills, rebuild trust, and navigate life’s challenges
+together.`,
     image: LINEN_IMAGE,
     whoIsItFor:
       "Couples at any stage — dating, engaged, married, or co-parenting — who want to strengthen their bond, navigate conflict, or work through a significant relationship challenge.",
@@ -34,9 +46,15 @@ export const SERVICES = [
     number: "03",
     title: "Family Therapy",
     slug: "family-therapy",
-    short:
-      "Helping families reconnect, communicate, and navigate life's most difficult challenges together.",
-    full: "Family therapy is a form of counselling that involves multiple family members working together to improve communication, resolve conflicts, and strengthen relationships within the family unit. It recognises that families function as interconnected systems, where changes in one member can impact the whole family. Family therapy can help address conflictual relationships and find sustainable solutions.",
+    short: `We all start life within a family. We learn how to interact with others and love from these
+first relationships. Like any other relationship we establish in our lives, family members may struggle
+to connect, communicate, or may struggle to navigate past a major life challenge or change. Some
+families may have conflictual relationships, and struggle to find solutions.`,
+    full: `Family
+therapy is a form of counselling that involves multiple family members working together to improve
+communication, resolve conflicts, and strengthen relationships within the family unit. It recognises
+that families function as interconnected systems, where changes in one member can impact the
+whole family.`,
     image: PROTEA_IMAGE,
     whoIsItFor:
       "Families experiencing conflict, communication breakdown, major life changes (divorce, bereavement, relocation), or those supporting a member through a mental health challenge.",
@@ -48,8 +66,13 @@ export const SERVICES = [
     title: "Group Therapy",
     slug: "group-therapy",
     short:
-      "Shared healing — connecting with others facing similar challenges in a confidential group setting.",
-    full: "Group therapy is a form of psychotherapy where one or more mental health professionals treat several people simultaneously. It creates a safe confidential environment where participants can share their struggles, learn new coping strategies, and practice social skills alongside others facing similar challenges. Group therapy may focus on skills training and psycho-education, or may be for the purpose of mutual support.",
+      "In group therapy members of the group are usually seen for a common condition, common challenges or common problems.",
+    full: `Group therapy is a form of
+psychotherapy where one or more mental health professionals treat several people simultaneously.
+It creates a safe confidential environment where participants can share their struggles, learn new
+coping strategies, and practice social skills, alongside other group members facing similar challenges.
+Group therapy may focus on skills training and psycho-education or may be for the purpose of
+supporting each other as group members.`,
     image: LINEN_IMAGE,
     whoIsItFor:
       "Individuals who benefit from peer connection and shared experience — including those working through grief, anxiety, social difficulties, or specific life challenges.",
@@ -58,14 +81,22 @@ export const SERVICES = [
   },
   {
     number: "05",
-    title: "Adolescent Therapy",
-    slug: "adolescent-therapy",
-    short:
-      "Guiding teens through the complexities of identity, emotion, and social pressure with specialist support.",
-    full: "Adolescence is a volatile transition period from childhood to adulthood, marked by rapid physical, emotional, and cognitive changes. Key challenges include managing mental health disorders, navigating intense peer pressure and identity development, coping with body image issues, and balancing risky behaviours with developing autonomy. It is a very critical transition phase as teenagers explore their independence, values, and beliefs. Therapy can be essential in helping a young person navigate this crucial period.",
+    title: "Adolescent Individual Therapy",
+    slug: "adolescent-individual-therapy",
+    short: `Adolescence is a crucial yet often challenging stage of life. Teens explore their
+identify, push boundaries, and navigate new social pressures. During this time, they may struggle
+with emotional, academic, or social difficulties, often lacking the support they need to cope
+effectively.`,
+    full: `Adolescence is a volatile transition period from childhood to adulthood
+marked by rapid physical. Emotional, and cognitive changes. Key challenges include managing
+mental health disorders (like depression and anxiety), navigating intense peer pressure and identity
+development, coping with body image issues, and balancing risky behaviours with developing
+autonomy. it is a very critical transition phase teenagers explore their independence, values and
+beliefs to answer the central question: WHO AM I? Seeking therapy may at times be very necessary
+to helping a young person navigate this crucial period of their development.`,
     image: PROTEA_IMAGE,
     whoIsItFor:
-      "Young people aged approximately 13–21 who are struggling with identity, school pressure, peer relationships, emotional regulation, anxiety, depression, or behavioural challenges.",
+      "Young people aged approximately 13-21 who are struggling with identity, school pressure, peer relationships, emotional regulation, anxiety, depression, or behavioural challenges.",
     whatToExpect:
       "Sessions are confidential and teenager-centred. Parents may be involved at agreed-upon points to support the process. The approach is adapted to the young person's developmental stage and individual needs.",
   },
@@ -73,8 +104,10 @@ export const SERVICES = [
     number: "06",
     title: "Psychological Assessment",
     slug: "psychological-assessment",
-    short:
-      "Comprehensive assessments to understand individual characteristics, capabilities, and needs.",
+    short: `Psychological assessment contributes important information to the
+understanding of individual characteristics and capabilities, through the collection, integration, and
+interpretation of information about an individual. Such information is obtained through a variety of
+methods and measures.`,
     full: "Psychological assessment contributes important information to the understanding of individual characteristics and capabilities, through the collection, integration, and interpretation of information about an individual. Such information is obtained through a variety of methods and measures, providing a thorough picture to inform treatment, support academic and workplace placement, and guide personal development.",
     image: LINEN_IMAGE,
     whoIsItFor:
@@ -86,9 +119,12 @@ export const SERVICES = [
     number: "07",
     title: "Online Sessions",
     slug: "online-sessions",
-    short:
-      "Flexible, accessible therapy via Microsoft Teams or Zoom — from the comfort of your own space.",
-    full: "Online therapy has become an increasingly popular and accessible way to receive psychological support. It allows individuals to connect with their therapist from the comfort and safety of their homes, removing barriers such as travel, scheduling conflicts, and geographical limitations. Whether you want video calls or phone sessions, online therapy provides a flexible, supportive environment to work on your mental health goals without compromising safety or accessibility.",
+    short: `VIA TEAMS or ZOOM - Whether you want video calls or phone sessions, online
+therapy provides a flexible, supportive environment to work on your mental health goals without
+compromising safety or accessibility.`,
+    full: `Online therapy has become increasingly popular and an accessible way to receive psychological support. It allows individuals to connect with
+their therapist from the comfort and safety of their homes, removing barriers such as travel,
+scheduling conflicts and geographical limitations.`,
     image: PROTEA_IMAGE,
     whoIsItFor:
       "Anyone who prefers the flexibility of remote sessions — including those with mobility constraints, busy schedules, or those located outside of Johannesburg.",
