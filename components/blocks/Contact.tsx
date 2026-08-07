@@ -20,7 +20,18 @@ const SERVICES = [
   "Not Sure Yet",
 ];
 
-export default function Contact() {
+interface Props {
+  heading: {
+    part1: string;
+    part2?: string;
+  };
+  subheading: string;
+}
+
+export default function Contact({
+  heading = { part1: "Ready to take", part2: "the first step?" },
+  subheading = "Reach out to book a session or ask any questions. I will respond within one business day.",
+}: Props) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
@@ -87,13 +98,8 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-4 mb-8"
             >
-              <div className="w-10 h-px bg-line" />
-              <span
-                className="text-line text-xs font-body uppercase"
-                style={{
-                  letterSpacing: "0.2em",
-                }}
-              >
+              <div className="w-10 h-px bg-common-green" />
+              <span className="text-common-green text-xs font-body uppercase tracking-[0.2em]">
                 Get in Touch
               </span>
             </motion.div>
@@ -104,9 +110,13 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="h2-clamp"
             >
-              Ready to take
-              <br />
-              <em className="emphasis">the first step?</em>
+              {heading.part1}
+              {heading.part2 && (
+                <>
+                  <br />
+                  <em className="emphasis">{heading.part2}</em>
+                </>
+              )}
             </motion.h2>
 
             <motion.p
@@ -122,8 +132,7 @@ export default function Contact() {
                 marginBottom: "3rem",
               }}
             >
-              Reach out to book a session or ask any questions. I will respond
-              within one business day.
+              {subheading}
             </motion.p>
 
             {/* Contact channels */}
@@ -230,7 +239,7 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 md:mt-22">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}

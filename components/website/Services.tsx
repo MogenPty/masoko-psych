@@ -100,10 +100,10 @@ export default function Services() {
                 }}
               >
                 <span
+                  className="text-common-green"
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "11px",
-                    color: "#0D9488",
                     letterSpacing: "0.1em",
                     paddingTop: "6px",
                     minWidth: "28px",
@@ -132,13 +132,7 @@ export default function Services() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "1rem",
-                          color: "rgba(18, 29, 47, 0.5)",
-                          marginTop: "6px",
-                          fontWeight: 300,
-                        }}
+                        className="text-clamp mt-1.5 font-light text-base font-body"
                       >
                         {service.short}
                       </motion.p>

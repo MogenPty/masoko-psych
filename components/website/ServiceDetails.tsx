@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICES } from "@/data/services";
-import ServiceNotFound from "./ServiceNotFound";
+import ServiceNotFound from "../blocks/ServiceNotFound";
 
 interface Props {
   slug: string;
@@ -23,8 +23,8 @@ export default function ServiceDetails({ slug }: Props) {
     <main>
       {/* Hero image banner */}
       <div
-        className="relative w-full overflow-hidden"
-        style={{ height: "clamp(280px, 45vw, 500px)", marginTop: "80px" }}
+        className="relative w-full overflow-hidden mt-20"
+        style={{ height: "clamp(280px, 45vw, 500px)" }}
       >
         <Image
           height={1024}
@@ -49,38 +49,20 @@ export default function ServiceDetails({ slug }: Props) {
           >
             <Link
               href="/services"
-              className="flex items-center gap-2 mb-6"
+              className="flex items-center gap-2 mb-6 uppercase text-xs tracking-[1.5em] font-body text-[rgba(248,245,242,0.6)]"
               style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "12px",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "rgba(248,245,242,0.6)",
                 textDecoration: "none",
               }}
             >
               <ArrowLeft size={14} /> All Services
             </Link>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "11px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#0D9488",
-                marginBottom: "12px",
-              }}
-            >
+            <p className="font-body text-xs tracking-[0.2em] uppercase text-common-green mb-3">
               {service.number} / 07
             </p>
             <h1
+              className="font-heading text-link leading-[1.1] tracking-[-0.02em] max-w-160"
               style={{
-                fontFamily: "'Instrument Serif', serif",
                 fontSize: "clamp(2.2rem, 5vw, 4rem)",
-                color: "#F8F5F2",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                maxWidth: "640px",
               }}
             >
               {service.title}
@@ -157,7 +139,7 @@ export default function ServiceDetails({ slug }: Props) {
             {/* CTA */}
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 focus-teal py-4 px-8 text-sm font-body uppercase text-[#F8F5F2] bg-[#0D9488] hover:bg-[#121D2F]"
+              className="inline-flex items-center gap-3 focus-teal py-4 px-8 text-sm font-body uppercase text-link bg-common-green hover:bg-clamp"
               style={{
                 alignSelf: "flex-start",
                 fontWeight: 500,
