@@ -40,7 +40,9 @@ export default function Hero() {
               fontSize: "12px",
             }}
           >
-            Clinical Psychology · Randburg & Soweto, Johannesburg
+            Clinical Psychologist
+<br />
+ Randburg & Soweto, Johannesburg
           </p>
           <h1
             className="mb-8"
