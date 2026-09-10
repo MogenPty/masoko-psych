@@ -42,10 +42,10 @@ export default function About() {
               initial={{ opacity: 0 }}
               animate={visible ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
-              className="select-none font-heading leading-[0.85] text-transparent tracking-tighter pointer-events-none"
+              className="select-none font-heading leading-[0.85] text-[#D4A373] tracking-tighter pointer-events-none"
               style={{
                 fontSize: "clamp(8rem, 18vw, 16rem)",
-                WebkitTextStroke: "1px rgba(13, 148, 136, 0.2)",
+                WebkitTextStroke: "2px #D4A373",
               }}
             >
               10+
