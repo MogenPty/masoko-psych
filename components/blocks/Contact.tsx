@@ -66,19 +66,23 @@ export default function Contact({
     formData.set("message", form.message);
     formData.set("website", form.website);
 
-    const result = await submitContactForm(
-      { success: false, message: "" },
-      formData,
-    );
+    try {
+      const result = await submitContactForm(
+        { success: false, message: "" },
+        formData,
+      );
 
-    setSubmitting(false);
+      if (!result.success) {
+        setError(result.message);
+        return;
+      }
 
-    if (!result.success) {
-      setError(result.message);
-      return;
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again shortly.");
+    } finally {
+      setSubmitting(false);
     }
-
-    setSubmitted(true);
 
     setTimeout(() => {
       setForm({

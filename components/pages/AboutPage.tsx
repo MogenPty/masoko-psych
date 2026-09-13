@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import PageTitle from "../blocks/PageTitle";
 
+const NTOKOZO_MASOKO = "/images/ntokozo-masoko.png";
+
 const CREDENTIALS = [
   {
     label: "HPCSA Registered",
@@ -46,8 +48,7 @@ export default function AboutPage() {
             <Image
               height={1024}
               width={1024}
-              // src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&q=80"
-              src="/images/ntokozo-masoko.png"
+              src={NTOKOZO_MASOKO}
               alt="Therapist in a calm consultation session"
               className="w-full h-full object-cover"
               style={{ filter: "brightness(0.95)" }}

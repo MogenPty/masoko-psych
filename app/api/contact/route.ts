@@ -1,25 +1,41 @@
 import { NextResponse } from "next/server";
 import { createElement } from "react";
+import type { ZodSafeParseResult } from "zod";
 import { emailProvider } from "@/lib/email";
 import { getRecipients, getServiceLabel } from "@/lib/email/routing";
 import { ContactNotification } from "@/lib/email/templates/contact-notification";
 import { contactFormSchema } from "@/lib/validations/contact";
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const parsed = contactFormSchema.safeParse(body);
+  let parsed: ZodSafeParseResult<{
+    name: string;
+    email: string;
+    phone: string;
+    service: string;
+    message?: string;
+    website?: string;
+  }>;
+  try {
+    const body = await req.json();
+    parsed = contactFormSchema.safeParse(body);
 
-  if (!parsed.success) {
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, message: parsed.error?.message },
+        { status: 400 },
+      );
+    }
+    if (parsed.data.website) {
+      return NextResponse.json({
+        success: true,
+        message: "Thanks — we'll be in touch soon.",
+      });
+    }
+  } catch {
     return NextResponse.json(
-      { success: false, message: parsed.error?.message },
+      { success: false, message: "Something went wrong. Please try again." },
       { status: 400 },
     );
-  }
-  if (parsed.data.website) {
-    return NextResponse.json({
-      success: true,
-      message: "Thanks — we'll be in touch soon.",
-    });
   }
 
   const { name, email, phone, service, message } = parsed.data;

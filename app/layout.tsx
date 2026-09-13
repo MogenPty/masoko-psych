@@ -3,6 +3,7 @@ import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import favicon from "@/app/assets/favicon.png";
 import Footer from "@/components/blocks/Footer";
 import Navbar from "@/components/blocks/Navbar";
 import { jsonLd } from "@/data/json-ld";
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     creator: "@MogenPty",
   },
   icons: {
-    icon: "/images/fav-icon-2.png",
+    icon: favicon.src,
   },
   robots: {
     index: true,

@@ -12,7 +12,7 @@ export const contactFormSchema = z.object({
   phone: z.string().min(7, "Please enter a valid phone number").max(20),
   service: z.enum(serviceValues).default("not-sure-yet"),
   message: z.string().max(2000).optional(),
-  website: z.string().max(0).optional(), // honeypot
+  website: z.string().optional(), // honeypot
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
