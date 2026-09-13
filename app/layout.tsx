@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     creator: "@MogenPty",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/fav-icon-2.png",
   },
   robots: {
     index: true,

@@ -46,7 +46,8 @@ export default function AboutPage() {
             <Image
               height={1024}
               width={1024}
-              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&q=80"
+              // src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&q=80"
+              src="/images/ntokozo-masoko.png"
               alt="Therapist in a calm consultation session"
               className="w-full h-full object-cover"
               style={{ filter: "brightness(0.95)" }}
