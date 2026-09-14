@@ -6,20 +6,11 @@ import { Mail, Phone, WhatsApp } from "@deemlol/next-icons";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { type SubmitEvent, useEffect, useRef, useState } from "react";
+import { submitContactForm } from "@/app/actions/contact";
 import AddressSection from "@/components/ui/AddressSection";
-import { ContactDetails } from "@/data/contact-details";
-
-const SERVICES = [
-  "Individual Therapy",
-  "Couples Therapy",
-  "Family Therapy",
-  "Group Therapy",
-  "Adolescent Therapy",
-  "Psychological Assessment",
-  "Online Sessions",
-  "Not Sure Yet",
-];
+import { type AddressType, ContactDetails } from "@/data/contact-details";
+import { SERVICE_OPTIONS } from "@/lib/email/routing";
 
 interface Props {
   heading: {
@@ -32,7 +23,7 @@ interface Props {
 export default function Contact({
   heading = { part1: "Ready to take", part2: "the first step?" },
   subheading = "Reach out to book a session or ask any questions. I will respond within one business day.",
-}: Props) {
+}: Readonly<Props>) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
@@ -41,10 +32,11 @@ export default function Contact({
     phone: "",
     preferred_service: "",
     message: "",
+    website: "", // honeypot — real users never fill this in
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,15 +53,36 @@ export default function Contact({
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    // const data = await base44.entities.BookingRequest.create(form);
-    const data = {};
-    setSubmitting(false);
-    setSubmitted(true);
+
+    const formData = new FormData();
+    formData.set("name", form.name);
+    formData.set("email", form.email);
+    formData.set("phone", form.phone);
+    formData.set("service", form.preferred_service || "not-sure-yet");
+    formData.set("message", form.message);
+    formData.set("website", form.website);
+
+    try {
+      const result = await submitContactForm(
+        { success: false, message: "" },
+        formData,
+      );
+
+      if (!result.success) {
+        setError(result.message);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again shortly.");
+    } finally {
+      setSubmitting(false);
+    }
 
     setTimeout(() => {
       setForm({
@@ -78,6 +91,7 @@ export default function Contact({
         phone: "",
         preferred_service: "",
         message: "",
+        website: "",
       });
       setSubmitted(false);
     }, 10000);
@@ -369,13 +383,13 @@ export default function Contact({
                         <option value="" disabled>
                           Select a service
                         </option>
-                        {SERVICES.map((s) => (
+                        {SERVICE_OPTIONS.map((opt) => (
                           <option
-                            key={s}
-                            value={s}
+                            key={opt.value}
+                            value={opt.value}
                             style={{ color: "#121D2F" }}
                           >
-                            {s}
+                            {opt.label}
                           </option>
                         ))}
                       </select>
@@ -407,6 +421,23 @@ export default function Contact({
                       style={{ resize: "none" }}
                     />
                   </div>
+
+                  {/* Honeypot — hidden from real users via off-screen positioning, not display:none (bots skip those) */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={form.website}
+                    onChange={(e) => handleChange("website", e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      height: 0,
+                      width: 0,
+                    }}
+                    aria-hidden="true"
+                  />
 
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <p
@@ -454,6 +485,18 @@ export default function Contact({
                       {submitting ? "Sending..." : "Send Message"}
                     </button>
                   </div>
+
+                  {error && (
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "13px",
+                        color: "#b91c1c",
+                      }}
+                    >
+                      {error}
+                    </p>
+                  )}
                 </form>
               )}
             </motion.div>
@@ -472,17 +515,17 @@ export default function Contact({
             <AddressSection
               address={address}
               mapPosition={index % 2 === 0 ? "right" : "left"}
-              label={
-                address.town
-                  ? `${address.town} Practice`
-                  : address.city
-                    ? `${address.city} Practice`
-                    : "Our Address"
-              }
+              label={getAddressLabel(address)}
             />
           </motion.div>
         ))}
       </div>
     </section>
   );
+}
+
+function getAddressLabel(address: AddressType) {
+  if (address.town) return `${address.town} Practice`;
+  if (address.city) return `${address.city} Practice`;
+  return "Our Address";
 }
