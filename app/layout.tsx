@@ -58,12 +58,22 @@ export const metadata: Metadata = {
   publisher: "MASOKO",
   metadataBase: new URL(SITE_URL),
   openGraph: {
+    title: {
+      default:
+        "Ntokozo Masoko Clinical Psychologist | Professional psychological care for Individuals, Couples, Families, and Adolescents",
+      template: "%s | Ntokozo Masoko Clinical Psychologist",
+    },
     url: SITE_URL,
     siteName: "MASOKO",
     locale: "en_ZA",
     type: "website",
   },
   twitter: {
+    title: {
+      default:
+        "Ntokozo Masoko Clinical Psychologist | Professional psychological care for Individuals, Couples, Families, and Adolescents",
+      template: "%s | Ntokozo Masoko Clinical Psychologist",
+    },
     card: "summary_large_image",
     site: "@MogenPty",
     creator: "@MogenPty",

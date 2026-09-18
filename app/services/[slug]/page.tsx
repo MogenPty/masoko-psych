@@ -33,19 +33,18 @@ export async function generateMetadata({
 
   if (!service) return {};
 
-  const title = `${service.title} | ${SITE_NAME}`;
   const description = service.short.replace(/\s+/g, " ").trim();
   const url = `${SITE_URL}/services/${service.slug}`;
 
   return {
-    title,
+    title: service.title,
     description,
     keywords: service.keywords, // Next merges this into <meta name="keywords">
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title,
+      title: service.title,
       description,
       url,
       siteName: SITE_NAME,
@@ -54,7 +53,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: service.title,
       description,
     },
     robots: {

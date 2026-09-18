@@ -25,7 +25,11 @@ function isPracticeOpen() {
 export default function Pricing() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-  const [open] = useState(() => isPracticeOpen());
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(isPracticeOpen());
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

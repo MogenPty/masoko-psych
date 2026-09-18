@@ -48,10 +48,28 @@ function loadTurnstileScript(): Promise<void> {
     `script[src="${TURNSTILE_SRC}"]`,
   );
   if (existing) {
-    return new Promise((resolve, reject) => {
-      existing.addEventListener("load", () => resolve());
-      existing.addEventListener("error", () => reject(new Error("Turnstile script failed to load")));
-    });
+    if (existing.dataset.failed === "true") {
+      existing.remove();
+    } else {
+      return new Promise((resolve, reject) => {
+        const onLoad = () => {
+          cleanup();
+          resolve();
+        };
+        const onError = () => {
+          cleanup();
+          existing.dataset.failed = "true";
+          existing.remove();
+          reject(new Error("Turnstile script failed to load"));
+        };
+        const cleanup = () => {
+          existing.removeEventListener("load", onLoad);
+          existing.removeEventListener("error", onError);
+        };
+        existing.addEventListener("load", onLoad, { once: true });
+        existing.addEventListener("error", onError, { once: true });
+      });
+    }
   }
 
   return new Promise((resolve, reject) => {
@@ -60,7 +78,11 @@ function loadTurnstileScript(): Promise<void> {
     s.async = true;
     s.defer = true;
     s.onload = () => resolve();
-    s.onerror = () => reject(new Error("Turnstile script failed to load"));
+    s.onerror = () => {
+      s.dataset.failed = "true";
+      s.remove();
+      reject(new Error("Turnstile script failed to load"));
+    };
     document.head.appendChild(s);
   });
 }

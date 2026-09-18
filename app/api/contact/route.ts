@@ -24,6 +24,12 @@ export async function POST(req: Request) {
 
   // Turnstile gate — before any business logic
   {
+    if (typeof rawBody !== "object" || rawBody === null || Array.isArray(rawBody)) {
+      return NextResponse.json(
+        { success: false, message: "Something went wrong. Please try again." },
+        { status: 400 },
+      );
+    }
     const bodyRecord = rawBody as Record<string, unknown>;
     const token = bodyRecord["cf-turnstile-response"];
     if (typeof token === "string" && token.length > 0) {

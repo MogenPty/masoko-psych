@@ -40,12 +40,14 @@ export default function ServiceDetails({ slug }: Readonly<Props>) {
         address: [
           {
             "@type": "PostalAddress",
+            streetAddress: "567 Honeydew Rd W",
             addressLocality: "Randburg",
             addressRegion: "Gauteng",
             addressCountry: "ZA",
           },
           {
             "@type": "PostalAddress",
+            streetAddress: "9625 Tshipo St",
             addressLocality: "Soweto",
             addressRegion: "Gauteng",
             addressCountry: "ZA",
