@@ -7,7 +7,7 @@ import favicon from "@/app/assets/favicon.png";
 import Footer from "@/components/blocks/Footer";
 import Navbar from "@/components/blocks/Navbar";
 import { jsonLd } from "@/data/json-ld";
-import { BASE_KEYWORDS } from "@/data/seo";
+import { SERVICES } from "@/data/services";
 
 const inter = Inter({
   variable: "--inter",
@@ -26,6 +26,24 @@ const intrumentSerif = Instrument_Serif({
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://masoko.mogen.co.za";
 
+const GENERAL_KEYWORDS = [
+  "clinical psychologist Randburg",
+  "clinical psychologist Soweto",
+  "psychologist Johannesburg",
+  "HPCSA registered psychologist",
+  "BHF registered psychologist",
+  "private practice psychologist Johannesburg",
+  "online therapy South Africa",
+  "Ntokozo Masoko psychologist",
+  "mental health services Johannesburg",
+  "therapist near me Randburg",
+  "therapist near me Soweto",
+];
+
+const allKeywords = Array.from(
+  new Set([...GENERAL_KEYWORDS, ...SERVICES.flatMap((s) => s.keywords)]),
+);
+
 export const metadata: Metadata = {
   title: {
     default:
@@ -34,18 +52,28 @@ export const metadata: Metadata = {
   },
   description:
     "Professional psychological care for individuals, couples, families, and adolescents. Over 10 years of experience creating lasting change.",
-  keywords: BASE_KEYWORDS,
+  keywords: allKeywords,
   authors: [{ name: "MASOKO" }],
   creator: "Masoko Psychological Clinic",
   publisher: "MASOKO",
   metadataBase: new URL(SITE_URL),
   openGraph: {
+    title: {
+      default:
+        "Ntokozo Masoko Clinical Psychologist | Professional psychological care for Individuals, Couples, Families, and Adolescents",
+      template: "%s | Ntokozo Masoko Clinical Psychologist",
+    },
     url: SITE_URL,
     siteName: "MASOKO",
     locale: "en_ZA",
     type: "website",
   },
   twitter: {
+    title: {
+      default:
+        "Ntokozo Masoko Clinical Psychologist | Professional psychological care for Individuals, Couples, Families, and Adolescents",
+      template: "%s | Ntokozo Masoko Clinical Psychologist",
+    },
     card: "summary_large_image",
     site: "@MogenPty",
     creator: "@MogenPty",

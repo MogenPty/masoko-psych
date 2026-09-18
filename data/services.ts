@@ -22,6 +22,15 @@ balanced and fulfilling life.`,
       "Adults navigating anxiety, depression, grief, life transitions, trauma, relationship difficulties, or anyone seeking greater self-understanding and personal growth.",
     whatToExpect:
       "Sessions are 50–60 minutes and held in a private, confidential setting. Together, we work at your pace — exploring thoughts, emotions, and patterns to develop strategies that lead to meaningful, lasting change.",
+    keywords: [
+      "individual therapy Randburg",
+      "one-on-one counselling Johannesburg",
+      "psychotherapy Soweto",
+      "anxiety therapist Johannesburg",
+      "depression counselling Randburg",
+      "individual psychotherapy South Africa",
+      "confidential counselling sessions",
+    ],
   },
   {
     number: "02",
@@ -40,6 +49,14 @@ together.`,
       "Couples at any stage — dating, engaged, married, or co-parenting — who want to strengthen their bond, navigate conflict, or work through a significant relationship challenge.",
     whatToExpect:
       "Both partners attend sessions together. The therapist creates a neutral, structured space for open dialogue, helping each person feel heard while building practical tools for healthier communication.",
+    keywords: [
+      "couples therapy Johannesburg",
+      "couples counselling Randburg",
+      "marriage counselling Soweto",
+      "relationship therapist near me",
+      "premarital counselling Johannesburg",
+      "couples counsellor South Africa",
+    ],
   },
   {
     number: "03",
@@ -59,6 +76,14 @@ whole family.`,
       "Families experiencing conflict, communication breakdown, major life changes (divorce, bereavement, relocation), or those supporting a member through a mental health challenge.",
     whatToExpect:
       "Sessions involve the relevant family members and are structured to ensure every voice is heard. The therapist works with the family system as a whole, identifying patterns and facilitating healthier dynamics.",
+    keywords: [
+      "family therapy Johannesburg",
+      "family counselling Randburg",
+      "family psychologist Soweto",
+      "conflict resolution family therapy",
+      "family communication counsellor",
+      "parent-child therapy South Africa",
+    ],
   },
   {
     number: "04",
@@ -77,6 +102,13 @@ supporting each other as group members.`,
       "Individuals who benefit from peer connection and shared experience — including those working through grief, anxiety, social difficulties, or specific life challenges.",
     whatToExpect:
       "Groups meet regularly in a structured, confidential setting. All participants agree to ground rules of respect and confidentiality. The therapist facilitates discussion, skill-building, and mutual support.",
+    keywords: [
+      "group therapy Johannesburg",
+      "support group therapy Randburg",
+      "group counselling sessions",
+      "peer support therapy South Africa",
+      "group psychotherapy Soweto",
+    ],
   },
   {
     number: "05",
@@ -98,6 +130,14 @@ to help a young person navigate this crucial period of their development.`,
       "Young people aged approximately 13-21 who are struggling with identity, school pressure, peer relationships, emotional regulation, anxiety, depression, or behavioural challenges.",
     whatToExpect:
       "Sessions are confidential and teenager-centred. Parents may be involved at agreed-upon points to support the process. The approach is adapted to the young person's developmental stage and individual needs.",
+    keywords: [
+      "adolescent therapist Johannesburg",
+      "teen counselling Randburg",
+      "teenage psychologist Soweto",
+      "youth mental health support",
+      "adolescent therapy South Africa",
+      "teen anxiety/identity counselling",
+    ],
   },
   {
     number: "06",
@@ -113,6 +153,12 @@ methods and measures.`,
       "Children, adolescents, and adults requiring clarity on cognitive functioning, learning difficulties, emotional wellbeing, or vocational fit — often referred by schools, employers, or other health professionals.",
     whatToExpect:
       "Assessments involve a structured intake interview followed by a battery of validated psychometric tests. A comprehensive written report with findings and recommendations is provided upon completion.",
+    keywords: [
+      "psychological assessment Johannesburg",
+      "psychometric assessment Randburg",
+      "cognitive assessment psychologist",
+      "psychological evaluation South Africa",
+    ],
   },
   {
     number: "07",
@@ -129,5 +175,12 @@ scheduling conflicts and geographical limitations.`,
       "Anyone who prefers the flexibility of remote sessions — including those with mobility constraints, busy schedules, or those located outside of Johannesburg.",
     whatToExpect:
       "Sessions are conducted via Microsoft Teams or Zoom. You will need a private space with a stable internet connection. All the same standards of confidentiality and professionalism apply as in-person sessions.",
+    keywords: [
+      "online psychologist South Africa",
+      "online therapy Johannesburg",
+      "virtual counselling sessions",
+      "telehealth psychologist South Africa",
+      "Zoom therapy sessions South Africa",
+    ],
   },
 ];

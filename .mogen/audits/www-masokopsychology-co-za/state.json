@@ -1,0 +1,23 @@
+{
+  "audit_id": "AUD-2026-09-15-www-masokopsychology-co-za-001",
+  "domain": "www.masokopsychology.co.za",
+  "client": "Masoko Psychological Clinic",
+  "audit_date": "2026-09-15",
+  "status": "COMPLETE",
+  "current_phase": "report",
+  "completed_phases": ["input", "technical", "content", "performance", "keywords", "local", "off-page", "growth", "competitors", "evidence", "findings", "priority", "report"],
+  "remaining_phases": [],
+  "failed_phases": [],
+  "completion_percentage": 100,
+  "availability": "5/40",
+  "project_day": 0,
+  "baseline_reference": null,
+  "last_updated": "2026-09-15T12:46:00+02:00",
+  "auditor": "Mogen (Taelo + Cohort)",
+  "normalized_params": {
+    "raw": "www.masokopsychology.co.za",
+    "domain": "www.masokopsychology.co.za",
+    "availability": "5/40",
+    "project_day": 0
+  }
+}

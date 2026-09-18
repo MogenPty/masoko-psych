@@ -7,10 +7,6 @@ import { ContactDetails } from "@/data/contact-details";
 import { Mail, Phone, WhatsApp } from "@deemlol/next-icons";
 
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const router = useRouter();
   const handleAnchorNav = (path: string) => anchorNav(path, router);
 

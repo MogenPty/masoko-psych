@@ -4,9 +4,60 @@ import type { ZodSafeParseResult } from "zod";
 import { emailProvider } from "@/lib/email";
 import { getRecipients, getServiceLabel } from "@/lib/email/routing";
 import { ContactNotification } from "@/lib/email/templates/contact-notification";
+import {
+  getClientIpFromHeaders,
+  getExpectedHostnames,
+  verifyTurnstileToken,
+} from "@/lib/turnstile";
 import { contactFormSchema } from "@/lib/validations/contact";
 
 export async function POST(req: Request) {
+  let rawBody: unknown;
+  try {
+    rawBody = await req.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Something went wrong. Please try again." },
+      { status: 400 },
+    );
+  }
+
+  // Turnstile gate — before any business logic
+  {
+    if (typeof rawBody !== "object" || rawBody === null || Array.isArray(rawBody)) {
+      return NextResponse.json(
+        { success: false, message: "Something went wrong. Please try again." },
+        { status: 400 },
+      );
+    }
+    const bodyRecord = rawBody as Record<string, unknown>;
+    const token = bodyRecord["cf-turnstile-response"];
+    if (typeof token === "string" && token.length > 0) {
+      const expectedHostnames = getExpectedHostnames();
+      const clientIp = getClientIpFromHeaders(req.headers);
+      const { ok } = await verifyTurnstileToken({
+        token,
+        remoteIp: clientIp,
+        expectedAction: "contact",
+        expectedHostnames,
+      });
+      if (!ok) {
+        return NextResponse.json(
+          { success: false, message: "Verification failed. Please refresh and try again." },
+          { status: 403 },
+        );
+      }
+    } else if (process.env.TURNSTILE_SECRET) {
+      const expectedHostnames = getExpectedHostnames();
+      if (expectedHostnames.size > 0) {
+        return NextResponse.json(
+          { success: false, message: "Please complete the verification and try again." },
+          { status: 403 },
+        );
+      }
+    }
+  }
+
   let parsed: ZodSafeParseResult<{
     name: string;
     email: string;
@@ -16,8 +67,7 @@ export async function POST(req: Request) {
     website?: string;
   }>;
   try {
-    const body = await req.json();
-    parsed = contactFormSchema.safeParse(body);
+    parsed = contactFormSchema.safeParse(rawBody);
 
     if (!parsed.success) {
       return NextResponse.json(

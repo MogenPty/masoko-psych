@@ -9,6 +9,7 @@ import Link from "next/link";
 import { type SubmitEvent, useEffect, useRef, useState } from "react";
 import { submitContactForm } from "@/app/actions/contact";
 import AddressSection from "@/components/ui/AddressSection";
+import Turnstile, { resetTurnstile } from "@/components/ui/Turnstile";
 import { type AddressType, ContactDetails } from "@/data/contact-details";
 import { SERVICE_OPTIONS } from "@/lib/email/routing";
 
@@ -37,6 +38,14 @@ export default function Contact({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(
+    null,
+  );
+
+  const siteKey =
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
+    "0x4AAAAAAE7pYzqoIcKFhR1P";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,6 +74,9 @@ export default function Contact({
     formData.set("service", form.preferred_service || "not-sure-yet");
     formData.set("message", form.message);
     formData.set("website", form.website);
+    if (turnstileToken) {
+      formData.set("cf-turnstile-response", turnstileToken);
+    }
 
     try {
       const result = await submitContactForm(
@@ -74,14 +86,24 @@ export default function Contact({
 
       if (!result.success) {
         setError(result.message);
+        // token is single-use — reset for retry even on failure
+        resetTurnstile(turnstileWidgetId);
+        setTurnstileToken(null);
         return;
       }
 
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again shortly.");
+      resetTurnstile(turnstileWidgetId);
+      setTurnstileToken(null);
     } finally {
       setSubmitting(false);
+      // If not submitted successfully, token already reset above; on success page unmounts so no reset needed
+      // Still reset for the success case when user returns after 10s
+      if (turnstileToken) {
+        // keep token until success screen resets form
+      }
     }
 
     setTimeout(() => {
@@ -93,6 +115,8 @@ export default function Contact({
         message: "",
         website: "",
       });
+      setTurnstileToken(null);
+      resetTurnstile(turnstileWidgetId);
       setSubmitted(false);
     }, 10000);
   };
@@ -485,6 +509,18 @@ export default function Contact({
                       {submitting ? "Sending..." : "Send Message"}
                     </button>
                   </div>
+
+                  {/* Turnstile — below submit, inside form. Single-use token; reset after each attempt. Responsive: flexible size, 100% width */}
+                  <Turnstile
+                    sitekey={siteKey}
+                    action="contact"
+                    onVerify={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken(null)}
+                    onError={() => setTurnstileToken(null)}
+                    onWidgetId={(id) => setTurnstileWidgetId(id)}
+                    size="flexible"
+                    theme="light"
+                  />
 
                   {error && (
                     <p

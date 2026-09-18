@@ -10,15 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import { SERVICES } from "@/data/services";
 import { anchorNav } from "@/lib/utils";
 
-const NAV_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/#services" },
-  { label: "Expertise", href: "/#expertise" },
-  { label: "Testimonials", href: "/#testimonials" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Contact", href: "/contact" },
-];
-
 const HOME_ANCHOR_LINKS = [
   { label: "Expertise", href: "/#expertise" },
   { label: "Testimonials", href: "/#testimonials" },
