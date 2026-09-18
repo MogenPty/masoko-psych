@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-} from "react-leaflet";
 import L from "leaflet";
+import { useEffect, useSyncExternalStore } from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 function createIcon(color: string) {
@@ -46,12 +40,12 @@ export default function LocationMap({
   lng,
   label,
   zoom = 15,
-}: LocationMapProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+}: Readonly<LocationMapProps>) {
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   if (!mounted) {
     return (

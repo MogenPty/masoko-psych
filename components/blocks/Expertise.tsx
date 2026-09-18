@@ -8,7 +8,6 @@ import { EXPERTISES } from "@/data/expertise";
 export default function Expertise() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-  const [hovered, setHovered] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -101,8 +100,6 @@ export default function Expertise() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={visible ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: i * 0.03 }}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
                   className="font-body text-sm py-2.5 px-5 text-[#121D2F] hover:text-[#0D9488] bg-transparent hover:bg-[#0d94880f] border border-[#121d2f26] hover:border-[#0D9488] translate-y-0 hover:-translate-y-1"
                   style={{
                     fontWeight: 400,

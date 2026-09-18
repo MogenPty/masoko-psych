@@ -24,10 +24,10 @@ export interface AddressType {
 }
 
 export const ContactDetails: ContactDetailsType = {
-  whatsAppNumber: "27681369552",
-  phoneNumber: "27765207876",
-  cellNumber: "073 942 6309",
-  emailAddress: "masoko@mogen.co.za",
+  whatsAppNumber: "27780169123",
+  phoneNumber: "27780169123",
+  cellNumber: "078 016 9123",
+  emailAddress: "info@masokopsychology.co.za",
   addresses: [
     {
       line1: "567 Honeydew Rd W",
