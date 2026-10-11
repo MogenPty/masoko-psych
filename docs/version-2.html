@@ -1,0 +1,632 @@
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masoko Psychology Centre | Randburg</title>
+    
+    <!-- Fonts: Inter for clean, modern readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify Solar Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Sage/Teal: Calming, reduces anxiety, promotes balance
+                        sage: {
+                            50: '#F4F7F6',
+                            100: '#E0EBE9',
+                            200: '#C3D6D2',
+                            300: '#A1BDB8',
+                            400: '#84A6A0',
+                            500: '#698F88', // Primary calm
+                            600: '#52706B',
+                            700: '#3F5450',
+                            800: '#31403D',
+                            900: '#26302E',
+                        },
+                        // Stone: Grounding, warm, reduces visual glare
+                        stone: {
+                            50: '#FAFAF9',
+                            100: '#F5F5F4', // Soft background
+                            200: '#E7E5E4',
+                            800: '#292524', // Soft text
+                            900: '#1C1917',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        tighter: '-0.04em',
+                        tight: '-0.02em',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(105, 143, 136, 0.1)',
+                        'glow': '0 0 40px -10px rgba(105, 143, 136, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+        
+        .page-transition {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar - Softened */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F5F4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C3D6D2;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A1BDB8;
+        }
+
+        /* Custom Form Inputs - Gentle Focus */
+        .custom-input:focus {
+            box-shadow: 0 0 0 2px #E0EBE9;
+            border-color: #84A6A0;
+        }
+
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Smooth subtle gradient for hero */
+        .calm-gradient {
+            background: linear-gradient(180deg, #F4F7F6 0%, #FAFAF9 100%);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-sage-200 selection:text-sage-900 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-100 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo: Softer, organic feel -->
+            <a href="#" onclick="navigate('home')" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 bg-sage-500 text-white flex items-center justify-center rounded-xl shadow-sm">
+                    <span class="font-medium text-lg">M</span>
+                </div>
+                <span class="text-lg font-medium tracking-tight text-stone-800 group-hover:text-sage-600 transition-colors uppercase">
+                    Masoko
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <button onclick="navigate('home')" class="nav-link text-sm font-medium text-stone-500 hover:text-sage-700 transition-colors" data-target="home">Home</button>
+                <button onclick="navigate('about')" class="nav-link text-sm font-medium text-stone-500 hover:text-sage-700 transition-colors" data-target="about">About</button>
+                <button onclick="navigate('services')" class="nav-link text-sm font-medium text-stone-500 hover:text-sage-700 transition-colors" data-target="services">Services</button>
+                <button onclick="navigate('faq')" class="nav-link text-sm font-medium text-stone-500 hover:text-sage-700 transition-colors" data-target="faq">Resources</button>
+                <button onclick="navigate('contact')" class="nav-link text-sm font-medium text-stone-500 hover:text-sage-700 transition-colors" data-target="contact">Contact</button>
+            </nav>
+
+            <!-- CTA & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <button onclick="navigate('contact')" class="hidden md:flex items-center gap-2 bg-sage-600 text-white px-5 py-2.5 rounded-full text-xs font-medium hover:bg-sage-700 hover:shadow-lg hover:shadow-sage-500/20 transition-all duration-300">
+                    <span>Book Session</span>
+                    <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                </button>
+                
+                <button onclick="toggleMobileMenu()" class="md:hidden text-stone-800 focus:outline-none">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="28"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-stone-50 z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-6 gap-6">
+            <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-stone-500">
+                <iconify-icon icon="solar:close-circle-linear" width="32"></iconify-icon>
+            </button>
+            <button onclick="navigate('home'); toggleMobileMenu()" class="text-2xl font-light text-stone-800 text-left">Home</button>
+            <button onclick="navigate('about'); toggleMobileMenu()" class="text-2xl font-light text-stone-800 text-left">About</button>
+            <button onclick="navigate('services'); toggleMobileMenu()" class="text-2xl font-light text-stone-800 text-left">Services</button>
+            <button onclick="navigate('faq'); toggleMobileMenu()" class="text-2xl font-light text-stone-800 text-left">Resources</button>
+            <button onclick="navigate('contact'); toggleMobileMenu()" class="text-2xl font-light text-stone-800 text-left">Contact</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-20">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="home" class="page-section active page-transition">
+            <!-- Hero: Gentle, grounding, not overwhelming -->
+            <div class="relative calm-gradient overflow-hidden min-h-[90vh] flex items-center">
+                <!-- Soft Organic Blobs for subconscious soothing -->
+                <div class="absolute top-0 right-0 w-2/3 h-full bg-sage-100/50 rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/4"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-sage-200/30 rounded-full blur-3xl pointer-events-none -translate-x-1/4 translate-y-1/4"></div>
+
+                <div class="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-stone-200 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-sage-500"></span>
+                            <span class="text-xs font-medium text-stone-500 tracking-wide uppercase">Safe Space in Randburg</span>
+                        </div>
+                        
+                        <h1 class="text-5xl md:text-6xl font-medium tracking-tighter leading-[1.15] text-stone-900">
+                            Find your ground.<br>
+                            <span class="text-sage-600 font-serif italic font-normal">Breathe again.</span>
+                        </h1>
+                        
+                        <p class="text-lg text-stone-500 font-light max-w-lg leading-relaxed">
+                            It’s okay to not be okay right now. We provide a calm, confidential environment to help you navigate life's complexities at your own pace.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <button onclick="navigate('contact')" class="flex items-center justify-center gap-2 bg-sage-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-sage-700 shadow-soft transition-all duration-300">
+                                <iconify-icon icon="solar:calendar-add-linear" width="18"></iconify-icon>
+                                <span>Start Healing</span>
+                            </button>
+                            <a href="tel:+27110000000" class="flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-medium border border-stone-200 bg-white text-stone-600 hover:border-sage-300 hover:text-sage-700 hover:shadow-sm transition-all duration-300">
+                                <iconify-icon icon="solar:phone-calling-linear" width="18"></iconify-icon>
+                                <span>Speak to Us</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Visual: Abstract, soft, non-triggering -->
+                    <div class="relative h-96 md:h-[500px] w-full rounded-3xl overflow-hidden bg-sage-50 border border-white shadow-xl shadow-sage-900/5 flex items-center justify-center group">
+                        <!-- Abstract Flowing Lines representing calmness -->
+                        <div class="absolute inset-0 opacity-40">
+                            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path d="M0 50 Q 25 30 50 50 T 100 50 V 100 H 0 Z" fill="#E0EBE9"></path>
+                                <path d="M0 60 Q 25 40 50 60 T 100 60 V 100 H 0 Z" fill="#C3D6D2" opacity="0.5"></path>
+                                <path d="M0 100 C 30 50 70 50 100 100 Z" fill="none" stroke="#84A6A0" stroke-width="0.5" opacity="0.3"></path>
+                            </svg>
+                        </div>
+                        <div class="text-center space-y-3 relative z-10 p-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-sm">
+                            <iconify-icon icon="solar:heart-pulse-linear" class="text-sage-500 text-5xl"></iconify-icon>
+                            <h3 class="text-lg font-medium text-stone-800">You are safe here</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gentle Features -->
+            <div class="bg-white py-24 border-b border-stone-100">
+                <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="p-8 rounded-3xl bg-stone-50 hover:bg-sage-50/50 transition-colors duration-500 group cursor-default border border-transparent hover:border-sage-100">
+                        <div class="w-12 h-12 rounded-2xl bg-white border border-stone-100 flex items-center justify-center mb-6 text-sage-500 shadow-sm group-hover:scale-105 transition-transform duration-500">
+                            <iconify-icon icon="solar:user-heart-linear" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-stone-900 mb-3">Individual Care</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed font-light">A personal space to unpack your thoughts without judgment or pressure.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="p-8 rounded-3xl bg-stone-50 hover:bg-sage-50/50 transition-colors duration-500 group cursor-default border border-transparent hover:border-sage-100">
+                        <div class="w-12 h-12 rounded-2xl bg-white border border-stone-100 flex items-center justify-center mb-6 text-sage-500 shadow-sm group-hover:scale-105 transition-transform duration-500">
+                            <iconify-icon icon="solar:users-group-rounded-linear" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-stone-900 mb-3">Relational Harmony</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed font-light">Gentle guidance for couples and families to find understanding again.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="p-8 rounded-3xl bg-stone-50 hover:bg-sage-50/50 transition-colors duration-500 group cursor-default border border-transparent hover:border-sage-100">
+                        <div class="w-12 h-12 rounded-2xl bg-white border border-stone-100 flex items-center justify-center mb-6 text-sage-500 shadow-sm group-hover:scale-105 transition-transform duration-500">
+                            <iconify-icon icon="solar:shield-check-linear" width="24"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium text-stone-900 mb-3">Private &amp; Secure</h3>
+                        <p class="text-sm text-stone-500 leading-relaxed font-light">Your confidentiality is our cornerstone. Feel safe to share your story.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: ABOUT ================= -->
+        <section id="about" class="page-section page-transition">
+            <div class="max-w-6xl mx-auto px-6 py-24">
+                <div class="flex flex-col md:flex-row gap-16 items-start">
+                    <div class="md:w-1/2 sticky top-28">
+                        <span class="text-sage-500 text-xs font-bold tracking-widest uppercase mb-4 block">Our Philosophy</span>
+                        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-stone-900 mb-6 leading-tight">
+                            Rooted in empathy.<br>Driven by compassion.
+                        </h2>
+                        <div class="h-1 w-20 bg-sage-300 rounded-full mb-8"></div>
+                        <div class="aspect-square bg-stone-100 rounded-3xl overflow-hidden relative shadow-inner">
+                            <div class="absolute inset-0 flex items-center justify-center bg-stone-200/50">
+                                <iconify-icon icon="solar:gallery-wide-linear" class="text-stone-400" width="48"></iconify-icon>
+                            </div>
+                            <!-- Soft overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-sage-900/40 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                                <p class="font-medium text-lg">Masoko Psychology Centre</p>
+                                <p class="text-sage-100 text-xs uppercase tracking-wider opacity-90">A place of rest</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 space-y-8 text-stone-600 font-light leading-loose text-lg">
+                        <p>
+                            At Masoko Psychology Centre, we believe that healing begins when the noise of the world quiets down. Located in a tranquil corner of Randburg, we have designed our practice to be an extension of calm.
+                        </p>
+                        <p>
+                            We understand that reaching out can feel overwhelming, especially when your mind feels cluttered or anxious. Our approach is not just clinical; it is deeply human. We move at your speed, ensuring you feel grounded and understood before we begin the work of therapy.
+                        </p>
+                        <p>
+                            Whether you are dealing with anxiety, trauma, or simply the weight of everyday life, our goal is to help you rediscover your balance.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 pt-6">
+                            <div class="bg-sage-50 p-6 rounded-2xl border border-sage-100">
+                                <h4 class="text-sage-800 font-medium text-lg mb-2">Our Values</h4>
+                                <ul class="text-sm space-y-2 text-stone-600">
+                                    <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-sage-500"></iconify-icon> Gentleness</li>
+                                    <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-sage-500"></iconify-icon> Patience</li>
+                                    <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-sage-500"></iconify-icon> Confidentiality</li>
+                                </ul>
+                            </div>
+                            <div class="bg-stone-50 p-6 rounded-2xl border border-stone-100">
+                                <h4 class="text-stone-800 font-medium text-lg mb-2">Our Mission</h4>
+                                <p class="text-sm text-stone-600">To provide a stabilizing presence in a chaotic world, empowering you to heal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: SERVICES ================= -->
+        <section id="services" class="page-section page-transition">
+            <div class="bg-stone-50 py-24 min-h-screen">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="text-center max-w-2xl mx-auto mb-20">
+                        <span class="text-sage-500 text-xs font-bold tracking-widest uppercase mb-3 block">Therapeutic Offerings</span>
+                        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-stone-900 mb-4">How we can help</h2>
+                        <p class="text-stone-500 font-light">Gentle interventions tailored to your emotional landscape.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Service Card Template -->
+                        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-sage-200 hover:shadow-soft transition-all duration-500 group">
+                            <div class="w-12 h-12 rounded-full bg-sage-50 flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-500 group-hover:text-white transition-colors duration-500">
+                                <iconify-icon icon="solar:user-linear" width="22"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-medium text-stone-800 mb-3">Individual Therapy</h3>
+                            <p class="text-sm text-stone-500 leading-relaxed mb-6 font-light">A quiet space to process anxiety, depression, and stress at your own rhythm.</p>
+                            <button onclick="navigate('contact')" class="text-xs font-medium text-sage-600 hover:text-sage-800 flex items-center gap-1 transition-colors">
+                                Book Session <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-sage-200 hover:shadow-soft transition-all duration-500 group">
+                            <div class="w-12 h-12 rounded-full bg-sage-50 flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-500 group-hover:text-white transition-colors duration-500">
+                                <iconify-icon icon="solar:heart-angle-linear" width="22"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-medium text-stone-800 mb-3">Couples Counselling</h3>
+                            <p class="text-sm text-stone-500 leading-relaxed mb-6 font-light">Facilitating calm communication and understanding between partners.</p>
+                            <button onclick="navigate('contact')" class="text-xs font-medium text-sage-600 hover:text-sage-800 flex items-center gap-1 transition-colors">
+                                Book Session <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-sage-200 hover:shadow-soft transition-all duration-500 group">
+                            <div class="w-12 h-12 rounded-full bg-sage-50 flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-500 group-hover:text-white transition-colors duration-500">
+                                <iconify-icon icon="solar:face-scan-square-linear" width="22"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-medium text-stone-800 mb-3">Trauma Support</h3>
+                            <p class="text-sm text-stone-500 leading-relaxed mb-6 font-light">Careful, paced debriefing to help integrate difficult experiences safely.</p>
+                            <button onclick="navigate('contact')" class="text-xs font-medium text-sage-600 hover:text-sage-800 flex items-center gap-1 transition-colors">
+                                Book Session <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-sage-200 hover:shadow-soft transition-all duration-500 group">
+                            <div class="w-12 h-12 rounded-full bg-sage-50 flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-500 group-hover:text-white transition-colors duration-500">
+                                <iconify-icon icon="solar:backpack-linear" width="22"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-medium text-stone-800 mb-3">Child &amp; Adolescent</h3>
+                            <p class="text-sm text-stone-500 leading-relaxed mb-6 font-light">Play therapy and emotional support in a non-threatening environment.</p>
+                            <button onclick="navigate('contact')" class="text-xs font-medium text-sage-600 hover:text-sage-800 flex items-center gap-1 transition-colors">
+                                Book Session <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-sage-200 hover:shadow-soft transition-all duration-500 group">
+                            <div class="w-12 h-12 rounded-full bg-sage-50 flex items-center justify-center text-sage-600 mb-6 group-hover:bg-sage-500 group-hover:text-white transition-colors duration-500">
+                                <iconify-icon icon="solar:clipboard-list-linear" width="22"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-medium text-stone-800 mb-3">Assessments</h3>
+                            <p class="text-sm text-stone-500 leading-relaxed mb-6 font-light">School readiness and career guidance conducted with minimal stress.</p>
+                            <button onclick="navigate('contact')" class="text-xs font-medium text-sage-600 hover:text-sage-800 flex items-center gap-1 transition-colors">
+                                Book Session <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </button>
+                        </div>
+                        
+                        <!-- Contact Card - Soft Contrast -->
+                        <div class="bg-sage-700 p-8 rounded-3xl flex flex-col justify-center items-center text-center shadow-lg shadow-sage-900/10">
+                            <h3 class="text-xl font-medium text-white mb-2">Unsure what you need?</h3>
+                            <p class="text-sm text-sage-200 mb-6 font-light">We can help you decide on the best path forward.</p>
+                            <button onclick="navigate('contact')" class="bg-white text-sage-800 px-6 py-2.5 rounded-full text-xs font-medium hover:bg-sage-100 transition-colors w-full">
+                                Contact Us Gently
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: FAQ ================= -->
+        <section id="faq" class="page-section page-transition">
+            <div class="max-w-4xl mx-auto px-6 py-24">
+                <div class="text-center mb-16">
+                    <span class="text-sage-500 text-xs font-bold tracking-widest uppercase">Clarity &amp; Comfort</span>
+                    <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-stone-900 mt-2">Common Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ Items with softer borders -->
+                    <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm bg-white">
+                        <button class="w-full flex items-center justify-between p-6 bg-white hover:bg-stone-50 transition-colors text-left" onclick="this.nextElementSibling.classList.toggle('hidden');">
+                            <span class="font-medium text-stone-800">Do you accept medical aid?</span>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-sage-400"></iconify-icon>
+                        </button>
+                        <div class="hidden p-6 pt-0 bg-white text-stone-500 text-sm font-light leading-relaxed border-t border-stone-50">
+                            Yes, Masoko Psychology Centre is registered with major medical aids. We handle the claims process to minimize your administrative stress.
+                        </div>
+                    </div>
+
+                    <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm bg-white">
+                        <button class="w-full flex items-center justify-between p-6 bg-white hover:bg-stone-50 transition-colors text-left" onclick="this.nextElementSibling.classList.toggle('hidden');">
+                            <span class="font-medium text-stone-800">What if I feel too anxious to talk?</span>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-sage-400"></iconify-icon>
+                        </button>
+                        <div class="hidden p-6 pt-0 bg-white text-stone-500 text-sm font-light leading-relaxed border-t border-stone-50">
+                            That is completely normal. Our first sessions are very low-pressure. You can share as little or as much as you feel comfortable with. Silence is also okay.
+                        </div>
+                    </div>
+                    
+                    <div class="border border-stone-100 rounded-2xl overflow-hidden shadow-sm bg-white">
+                        <button class="w-full flex items-center justify-between p-6 bg-white hover:bg-stone-50 transition-colors text-left" onclick="this.nextElementSibling.classList.toggle('hidden');">
+                            <span class="font-medium text-stone-800">Where are you located?</span>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-sage-400"></iconify-icon>
+                        </button>
+                        <div class="hidden p-6 pt-0 bg-white text-stone-500 text-sm font-light leading-relaxed border-t border-stone-50">
+                            We are in a quiet, secure area of Randburg with private parking, ensuring your arrival and departure are discreet and stress-free.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Banner: Softer, not alarming red -->
+                <div class="mt-16 bg-stone-100 rounded-3xl p-8 md:p-12 text-center text-stone-800 border border-stone-200">
+                    <h3 class="text-xl font-medium mb-3">In crisis right now?</h3>
+                    <p class="text-stone-500 text-sm mb-6 max-w-lg mx-auto font-light">If you are feeling unsafe or suicidal, please reach out for immediate help. You are not alone.</p>
+                    <a href="tel:0800567567" class="inline-flex items-center gap-2 bg-stone-200 px-6 py-2 rounded-full text-stone-700 text-sm font-medium hover:bg-stone-300 transition-colors">
+                        <iconify-icon icon="solar:phone-calling-linear"></iconify-icon>
+                        <span>Call SADAG: 0800 567 567</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: CONTACT ================= -->
+        <section id="contact" class="page-section page-transition">
+            <div class="max-w-6xl mx-auto px-6 py-24">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <div>
+                        <span class="text-sage-500 text-xs font-bold tracking-widest uppercase">Reach Out</span>
+                        <h2 class="text-4xl font-medium tracking-tight text-stone-900 mt-2 mb-6">Take the first step.</h2>
+                        <p class="text-stone-500 font-light mb-12 text-lg">
+                            Fill in the form below. There is no rush, and no obligation. We will get back to you gently.
+                        </p>
+
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-2xl bg-sage-50 flex items-center justify-center text-sage-600 flex-shrink-0 group-hover:bg-sage-100 transition-colors">
+                                    <iconify-icon icon="solar:map-point-linear" width="24"></iconify-icon>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800">Visit Us</h4>
+                                    <p class="text-stone-500 text-sm mt-1 font-light">Randburg, Gauteng<br>South Africa</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-2xl bg-sage-50 flex items-center justify-center text-sage-600 flex-shrink-0 group-hover:bg-sage-100 transition-colors">
+                                    <iconify-icon icon="solar:phone-calling-linear" width="24"></iconify-icon>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800">Call Us</h4>
+                                    <p class="text-stone-500 text-sm mt-1 font-light">Mon-Fri from 8am to 5pm.</p>
+                                    <a href="tel:+27111234567" class="text-sage-600 font-medium text-sm block mt-1 hover:text-sage-700 transition-colors">+27 11 123 4567</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-2xl bg-sage-50 flex items-center justify-center text-sage-600 flex-shrink-0 group-hover:bg-sage-100 transition-colors">
+                                    <iconify-icon icon="solar:letter-linear" width="24"></iconify-icon>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-stone-800">Email</h4>
+                                    <a href="mailto:info@masokopsych.co.za" class="text-sage-600 font-medium text-sm block mt-1 hover:text-sage-700 transition-colors">info@masokopsych.co.za</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form: Clean, white, unintimidating -->
+                    <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-soft border border-stone-50">
+                        <form onsubmit="event.preventDefault(); alert('We have received your message and will be in touch gently.');" class="space-y-6">
+                            <div class="grid grid-cols-2 gap-5">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">First name</label>
+                                    <input type="text" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none transition-all placeholder:text-stone-300" placeholder="Jane" required="">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">Last name</label>
+                                    <input type="text" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none transition-all placeholder:text-stone-300" placeholder="Doe" required="">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">Email</label>
+                                <input type="email" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none transition-all placeholder:text-stone-300" placeholder="jane@example.com" required="">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">Phone (Optional)</label>
+                                <input type="tel" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none transition-all placeholder:text-stone-300" placeholder="+27 00 000 0000">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">I'm interested in</label>
+                                <div class="relative">
+                                    <select class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none appearance-none cursor-pointer text-stone-600">
+                                        <option>Individual Therapy</option>
+                                        <option>Couples Counselling</option>
+                                        <option>Child Therapy</option>
+                                        <option>Just need to talk</option>
+                                    </select>
+                                    <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"></iconify-icon>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-xs font-semibold text-stone-600 uppercase tracking-wide">Message</label>
+                                <textarea class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-sm custom-input outline-none transition-all h-32 resize-none placeholder:text-stone-300" placeholder="How are you feeling?"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-sage-600 text-white font-medium text-sm py-4 rounded-xl hover:bg-sage-700 transition-colors duration-300 shadow-lg shadow-sage-500/20">Send Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer: Grounded, dark but warm -->
+    <footer class="bg-stone-900 text-white pt-20 pb-10 border-t border-stone-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" onclick="navigate('home')" class="flex items-center gap-2 mb-6">
+                         <div class="w-8 h-8 bg-sage-600 text-white flex items-center justify-center rounded-lg">
+                            <span class="font-bold text-sm">M</span>
+                        </div>
+                        <span class="text-xl font-medium tracking-tight">MASOKO</span>
+                    </a>
+                    <p class="text-stone-400 text-sm leading-relaxed font-light">
+                        Creating safe spaces for healing in Randburg. Your mental wellness is our priority.
+                    </p>
+                </div>
+                
+                <div>
+                    <h5 class="text-sm font-semibold text-white mb-6 uppercase tracking-wider text-sage-200">Explore</h5>
+                    <ul class="space-y-3 text-sm text-stone-400 font-light">
+                        <li><button onclick="navigate('home')" class="hover:text-sage-300 transition-colors">Home</button></li>
+                        <li><button onclick="navigate('about')" class="hover:text-sage-300 transition-colors">About Us</button></li>
+                        <li><button onclick="navigate('services')" class="hover:text-sage-300 transition-colors">Services</button></li>
+                        <li><button onclick="navigate('faq')" class="hover:text-sage-300 transition-colors">Resources</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-sm font-semibold text-white mb-6 uppercase tracking-wider text-sage-200">Legal</h5>
+                    <ul class="space-y-3 text-sm text-stone-400 font-light">
+                        <li><a href="#" class="hover:text-sage-300 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-sage-300 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-sage-300 transition-colors">POPIA Compliance</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-sm font-semibold text-white mb-6 uppercase tracking-wider text-sage-200">Connect</h5>
+                    <ul class="space-y-4 text-sm text-stone-400 font-light">
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:map-point-linear" class="text-sage-500"></iconify-icon>
+                            Randburg, Gauteng
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:phone-calling-linear" class="text-sage-500"></iconify-icon>
+                            +27 11 000 0000
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:letter-linear" class="text-sage-500"></iconify-icon>
+                            info@masokopsych.co.za
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-stone-500 font-light">© 2023 Masoko Psychology Centre. All rights reserved.</p>
+                <div class="flex gap-6">
+                     <a href="#" class="text-stone-500 hover:text-sage-300 transition-colors"><iconify-icon icon="brandico:facebook-rect" width="16"></iconify-icon></a>
+                     <a href="#" class="text-stone-500 hover:text-sage-300 transition-colors"><iconify-icon icon="brandico:instagram-filled" width="16"></iconify-icon></a>
+                     <a href="#" class="text-stone-500 hover:text-sage-300 transition-colors"><iconify-icon icon="brandico:linkedin-rect" width="16"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function navigate(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if(link.dataset.target === pageId) {
+                    link.classList.add('text-sage-700');
+                    link.classList.remove('text-stone-500');
+                } else {
+                    link.classList.remove('text-sage-700');
+                    link.classList.add('text-stone-500');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+            } else {
+                menu.classList.add('translate-x-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            navigate('home');
+        });
+    </script>
+
+</body></html>

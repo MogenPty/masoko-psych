@@ -1,0 +1,431 @@
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masoko Psychology Centre | Inner Clarity</title>
+    
+    <!-- Fonts: Space Grotesk for structure, Outfit for clarity -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify Solar Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // "Midnight Psyche" Palette
+                        void: {
+                            900: '#0B0C10', // Deepest background
+                            800: '#15171E', // Cards/Surfaces
+                            700: '#1F222E', // Borders
+                        },
+                        mist: {
+                            100: '#E2E8F0', // Primary Text
+                            300: '#94A3B8', // Secondary Text
+                            500: '#64748B', // Muted
+                        },
+                        // Accents
+                        aurora: '#45F0DF', // Teal/Cyan - Clarity
+                        bloom: '#FDA4AF',  // Soft Pink - Humanity
+                        iris: '#818CF8',   // Indigo - Depth
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        tightest: '-0.06em',
+                        tighter: '-0.04em',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMEIwQzEwIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxRjIyMkUiLz4KPC9zdmc+')",
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0C10;
+            color: #E2E8F0;
+        }
+
+        /* Custom subtle grain overlay */
+        .bg-grain::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+        }
+
+        .reveal-up {
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0B0C10; }
+        ::-webkit-scrollbar-thumb { background: #1F222E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #45F0DF; }
+
+        /* Smooth switching */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-void-900 bg-grain min-h-screen flex flex-col antialiased selection:bg-aurora selection:text-void-900 overflow-x-hidden">
+
+    <!-- Navigation: Floating Glass Bar -->
+    <nav class="fixed top-6 left-0 right-0 z-40 flex justify-center px-4">
+        <div class="bg-void-800/80 backdrop-blur-xl border border-void-700/50 rounded-full px-6 py-3 flex items-center justify-between gap-8 md:gap-12 shadow-2xl shadow-black/20">
+            <!-- Logo -->
+            <a href="#" onclick="showSection('home')" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-aurora to-iris flex items-center justify-center text-void-900 font-bold font-display text-lg">M</div>
+                <span class="font-display font-medium tracking-tight text-white hidden sm:block group-hover:text-aurora transition-colors">Masoko</span>
+            </a>
+
+            <!-- Links -->
+            <div class="flex items-center gap-6">
+                <button onclick="showSection('about')" class="text-xs md:text-sm font-light text-mist-300 hover:text-white transition-colors uppercase tracking-widest">Philosophy</button>
+                <button onclick="showSection('services')" class="text-xs md:text-sm font-light text-mist-300 hover:text-white transition-colors uppercase tracking-widest">Services</button>
+                <button onclick="showSection('contact')" class="text-xs md:text-sm font-light text-mist-300 hover:text-white transition-colors uppercase tracking-widest">Connect</button>
+            </div>
+
+            <!-- CTA -->
+            <button onclick="showSection('contact')" class="w-8 h-8 rounded-full border border-void-700 bg-void-900 flex items-center justify-center text-aurora hover:bg-aurora hover:text-void-900 transition-all duration-300 group">
+                <iconify-icon icon="solar:arrow-right-up-linear" class="group-hover:rotate-45 transition-transform duration-300"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto w-full">
+
+        <!-- ================= SECTION: HOME ================= -->
+        <section id="home" class="tab-content active min-h-[85vh] flex flex-col justify-center relative">
+            <!-- Abstract background glow -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-iris/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-aurora/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="grid md:grid-cols-12 gap-12 items-end">
+                <div class="md:col-span-8 z-10">
+                    <div class="inline-flex items-center gap-3 mb-8 reveal-up">
+                        <span class="w-2 h-2 rounded-full bg-aurora animate-pulse"></span>
+                        <span class="text-aurora font-mono text-xs tracking-widest uppercase">Psychology Centre</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-medium leading-[0.9] tracking-tighter text-white mb-8 reveal-up delay-100">
+                        Untangle <br>
+                        <span class="text-mist-500">the noise.</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-mist-300 font-light max-w-xl leading-relaxed reveal-up delay-200">
+                        In a world of constant signal, we offer silence. A brutalist approach to modern healing—stripping away the layers to find what is real, what is hurt, and what is whole.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mt-10 reveal-up delay-300">
+                        <button onclick="showSection('contact')" class="bg-mist-100 text-void-900 px-8 py-4 rounded-full font-medium hover:bg-aurora transition-colors duration-300 flex items-center gap-2">
+                            <span>Begin Therapy</span>
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </button>
+                        <button onclick="showSection('services')" class="border border-void-700 text-mist-300 px-8 py-4 rounded-full font-light hover:border-mist-500 hover:text-white transition-colors duration-300">
+                            Explore Services
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats / Quick Info -->
+                <div class="md:col-span-4 grid grid-cols-2 gap-4 reveal-up delay-300">
+                    <div class="bg-void-800/50 p-6 rounded-2xl border border-void-700 backdrop-blur-sm">
+                        <iconify-icon icon="solar:shield-star-linear" class="text-3xl text-iris mb-3"></iconify-icon>
+                        <h3 class="text-2xl font-display font-medium text-white">100%</h3>
+                        <p class="text-xs text-mist-500 uppercase tracking-wider mt-1">Confidential</p>
+                    </div>
+                    <div class="bg-void-800/50 p-6 rounded-2xl border border-void-700 backdrop-blur-sm">
+                        <iconify-icon icon="solar:users-group-two-rounded-linear" class="text-3xl text-bloom mb-3"></iconify-icon>
+                        <h3 class="text-2xl font-display font-medium text-white">Randburg</h3>
+                        <p class="text-xs text-mist-500 uppercase tracking-wider mt-1">Based</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION: ABOUT (Philosophy) ================= -->
+        <section id="about" class="tab-content pt-10">
+            <div class="mb-16 border-b border-void-700 pb-8 flex items-end justify-between">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-display font-medium tracking-tighter text-white">The Method</h2>
+                    <p class="text-mist-500 mt-2 font-light">Structure for the chaotic mind.</p>
+                </div>
+                <iconify-icon icon="solar:asteroid-linear" class="text-5xl text-void-700 animate-spin-slow hidden md:block" style="animation-duration: 10s"></iconify-icon>
+            </div>
+
+            <!-- Bento Grid Layout -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Large Card -->
+                <div class="md:col-span-2 bg-void-800 rounded-3xl p-8 md:p-12 border border-void-700 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+                        <iconify-icon icon="solar:brain-linear" class="text-8xl text-aurora rotate-12"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-display text-white mb-4 relative z-10">Cognitive Reconstruction</h3>
+                    <p class="text-mist-300 font-light leading-relaxed max-w-md relative z-10">
+                        We don't just "talk." We analyze the architecture of your thoughts. Masoko Psychology Centre uses evidence-based frameworks to dismantle harmful patterns and rebuild resilience from the foundation up.
+                    </p>
+                    <div class="mt-8 flex gap-2">
+                        <span class="px-3 py-1 rounded-full border border-void-600 text-xs text-mist-500">CBT</span>
+                        <span class="px-3 py-1 rounded-full border border-void-600 text-xs text-mist-500">Integrative</span>
+                        <span class="px-3 py-1 rounded-full border border-void-600 text-xs text-mist-500">Humanistic</span>
+                    </div>
+                </div>
+
+                <!-- Tall Card -->
+                <div class="md:row-span-2 bg-gradient-to-b from-void-800 to-void-900 rounded-3xl p-8 border border-void-700 flex flex-col justify-between group hover:border-iris/30 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-iris/10 flex items-center justify-center text-iris mb-6">
+                            <iconify-icon icon="solar:heart-pulse-linear" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-display text-white mb-2">Empathy First</h3>
+                        <p class="text-sm text-mist-300 font-light leading-relaxed">
+                            Before analysis comes understanding. We create a vacuum-sealed safe space where judgment cannot enter.
+                        </p>
+                    </div>
+                    <div class="mt-8 h-32 w-full bg-void-950 rounded-xl border border-void-800 relative overflow-hidden">
+                        <!-- Abstract wave visual -->
+                        <div class="absolute inset-0 opacity-30 flex items-center">
+                            <svg viewBox="0 0 100 20" class="w-full h-full fill-none stroke-iris" stroke-width="0.5">
+                                <path d="M0 10 Q 25 20 50 10 T 100 10"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Card 1 -->
+                <div class="bg-void-800 rounded-3xl p-8 border border-void-700 hover:bg-void-700/50 transition-colors">
+                    <iconify-icon icon="solar:lock-password-unlocked-linear" class="text-3xl text-bloom mb-4"></iconify-icon>
+                    <h3 class="text-lg font-display text-white mb-2">Private Access</h3>
+                    <p class="text-sm text-mist-500 font-light">Discrete location in Randburg.</p>
+                </div>
+
+                <!-- Small Card 2 -->
+                <div class="bg-void-800 rounded-3xl p-8 border border-void-700 hover:bg-void-700/50 transition-colors">
+                    <iconify-icon icon="solar:clock-circle-linear" class="text-3xl text-aurora mb-4"></iconify-icon>
+                    <h3 class="text-lg font-display text-white mb-2">Paced Healing</h3>
+                    <p class="text-sm text-mist-500 font-light">Sessions that respect your timing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION: SERVICES ================= -->
+        <section id="services" class="tab-content pt-10">
+            <div class="mb-12">
+                <span class="text-aurora font-mono text-xs tracking-widest uppercase mb-2 block">Offerings</span>
+                <h2 class="text-4xl md:text-6xl font-display font-medium tracking-tighter text-white">Interventions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Service Item 1 -->
+                <div class="group bg-void-800 hover:bg-mist-100 transition-colors duration-500 rounded-2xl p-1 cursor-pointer overflow-hidden border border-void-700 hover:border-mist-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8">
+                        <div class="flex items-center gap-6">
+                            <span class="text-void-700 group-hover:text-mist-400 font-mono text-sm">01</span>
+                            <h3 class="text-2xl md:text-3xl font-display text-mist-100 group-hover:text-void-900 transition-colors">Individual Therapy</h3>
+                        </div>
+                        <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0 flex items-center gap-4">
+                            <span class="text-sm text-void-600 hidden md:block">Depression • Anxiety • Trauma</span>
+                            <div class="w-10 h-10 rounded-full bg-void-900 text-white flex items-center justify-center">
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Details Expansion (Visual only here) -->
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 px-8 md:px-20 pb-0 group-hover:pb-8">
+                        <p class="text-void-600 font-light text-lg max-w-2xl">
+                            A one-on-one deep dive into your personal narrative. We explore the root causes of distress and build practical strategies for emotional regulation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="group bg-void-800 hover:bg-mist-100 transition-colors duration-500 rounded-2xl p-1 cursor-pointer overflow-hidden border border-void-700 hover:border-mist-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8">
+                        <div class="flex items-center gap-6">
+                            <span class="text-void-700 group-hover:text-mist-400 font-mono text-sm">02</span>
+                            <h3 class="text-2xl md:text-3xl font-display text-mist-100 group-hover:text-void-900 transition-colors">Couples &amp; Relations</h3>
+                        </div>
+                        <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0 flex items-center gap-4">
+                            <span class="text-sm text-void-600 hidden md:block">Communication • Intimacy • Conflict</span>
+                            <div class="w-10 h-10 rounded-full bg-void-900 text-white flex items-center justify-center">
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 px-8 md:px-20 pb-0 group-hover:pb-8">
+                        <p class="text-void-600 font-light text-lg max-w-2xl">
+                            Navigating the space between two people. We facilitate difficult conversations and help rebuild trust bridges that have been burned.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="group bg-void-800 hover:bg-mist-100 transition-colors duration-500 rounded-2xl p-1 cursor-pointer overflow-hidden border border-void-700 hover:border-mist-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8">
+                        <div class="flex items-center gap-6">
+                            <span class="text-void-700 group-hover:text-mist-400 font-mono text-sm">03</span>
+                            <h3 class="text-2xl md:text-3xl font-display text-mist-100 group-hover:text-void-900 transition-colors">Child &amp; Adolescent</h3>
+                        </div>
+                        <div class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0 flex items-center gap-4">
+                            <span class="text-sm text-void-600 hidden md:block">Development • School • Behavioral</span>
+                            <div class="w-10 h-10 rounded-full bg-void-900 text-white flex items-center justify-center">
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 px-8 md:px-20 pb-0 group-hover:pb-8">
+                        <p class="text-void-600 font-light text-lg max-w-2xl">
+                            Using play and creative expression to help younger minds articulate complex feelings they don't yet have the words for.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION: CONTACT ================= -->
+        <section id="contact" class="tab-content pt-10">
+            <div class="grid lg:grid-cols-2 gap-16 min-h-[60vh] items-center">
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-display font-medium tracking-tighter text-white mb-6">
+                        Start the<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-aurora to-iris">conversation.</span>
+                    </h2>
+                    <p class="text-mist-300 font-light text-lg mb-10 max-w-md">
+                        Healing is a brave act. Reach out, and we will guide you through the next steps with discretion and care.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <a href="mailto:info@masoko.co.za" class="flex items-center gap-4 text-white hover:text-aurora transition-colors group">
+                            <div class="w-12 h-12 rounded-full border border-void-700 flex items-center justify-center group-hover:border-aurora transition-colors">
+                                <iconify-icon icon="solar:letter-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <span class="text-xl font-light">info@masokopsych.co.za</span>
+                        </a>
+                        <a href="tel:+27111234567" class="flex items-center gap-4 text-white hover:text-aurora transition-colors group">
+                            <div class="w-12 h-12 rounded-full border border-void-700 flex items-center justify-center group-hover:border-aurora transition-colors">
+                                <iconify-icon icon="solar:phone-calling-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <span class="text-xl font-light">+27 11 123 4567</span>
+                        </a>
+                        <div class="flex items-center gap-4 text-mist-500">
+                            <div class="w-12 h-12 rounded-full border border-void-700 flex items-center justify-center">
+                                <iconify-icon icon="solar:map-point-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <span class="text-lg font-light">Randburg, South Africa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist Form -->
+                <div class="bg-void-800 p-8 rounded-3xl border border-void-700 relative">
+                    <!-- Decorative element -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-aurora to-transparent opacity-20 blur-xl"></div>
+                    
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-xs text-mist-500 uppercase tracking-widest">Name</label>
+                                <input type="text" class="w-full bg-void-900 border border-void-700 rounded-xl p-4 text-white focus:outline-none focus:border-aurora transition-colors" placeholder="First Name">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs text-mist-500 uppercase tracking-widest">&nbsp;</label>
+                                <input type="text" class="w-full bg-void-900 border border-void-700 rounded-xl p-4 text-white focus:outline-none focus:border-aurora transition-colors" placeholder="Surname">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs text-mist-500 uppercase tracking-widest">Email</label>
+                            <input type="email" class="w-full bg-void-900 border border-void-700 rounded-xl p-4 text-white focus:outline-none focus:border-aurora transition-colors" placeholder="you@example.com">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs text-mist-500 uppercase tracking-widest">Topic</label>
+                            <div class="relative">
+                                <select class="w-full bg-void-900 border border-void-700 rounded-xl p-4 text-white focus:outline-none focus:border-aurora transition-colors appearance-none cursor-pointer">
+                                    <option>Individual Therapy</option>
+                                    <option>Relationship Issues</option>
+                                    <option>Trauma Support</option>
+                                    <option>Other Inquiry</option>
+                                </select>
+                                <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-4 top-1/2 -translate-y-1/2 text-mist-500 pointer-events-none"></iconify-icon>
+                            </div>
+                        </div>
+
+                        <button type="button" class="w-full bg-white text-void-900 font-medium py-4 rounded-xl hover:bg-aurora transition-colors duration-300 mt-4">
+                            Request Appointment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-void-800 py-12 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <p class="text-white font-display font-bold text-2xl tracking-tight">MASOKO</p>
+                <p class="text-mist-500 text-xs mt-1">© 2023 Psychology Centre. All rights reserved.</p>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-mist-500 hover:text-white transition-colors"><iconify-icon icon="brandico:instagram-filled" width="20"></iconify-icon></a>
+                <a href="#" class="text-mist-500 hover:text-white transition-colors"><iconify-icon icon="brandico:facebook-rect" width="20"></iconify-icon></a>
+                <a href="#" class="text-mist-500 hover:text-white transition-colors"><iconify-icon icon="brandico:linkedin-rect" width="20"></iconify-icon></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            // Hide all
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show target
+            const target = document.getElementById(id);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body></html>
