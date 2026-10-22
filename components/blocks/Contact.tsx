@@ -43,9 +43,7 @@ export default function Contact({
     null,
   );
 
-  const siteKey =
-    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
-    "0x4AAAAAAE7pYzqoIcKFhR1P";
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -122,7 +120,11 @@ export default function Contact({
   };
 
   return (
-    <section id={"contact"} ref={ref} className="bg-[#F8F5F2] px-32 py-0">
+    <section
+      id={"contact"}
+      ref={ref}
+      className="bg-[#F8F5F2] px-2 md:px-32 py-0"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-16">
