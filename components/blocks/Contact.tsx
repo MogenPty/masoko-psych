@@ -43,9 +43,8 @@ export default function Contact({
     null,
   );
 
-  const siteKey =
-    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
-    "0x4AAAAAAE7pYzqoIcKFhR1P";
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
+  const isFormConfigured = siteKey.length > 0;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,6 +63,12 @@ export default function Contact({
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!isFormConfigured) {
+      setError(
+        "This contact form is not currently configured. Please contact the developer.",
+      );
+      return;
+    }
     setSubmitting(true);
     setError(null);
 
@@ -122,7 +127,11 @@ export default function Contact({
   };
 
   return (
-    <section id={"contact"} ref={ref} className="bg-[#F8F5F2] px-32 py-0">
+    <section
+      id={"contact"}
+      ref={ref}
+      className="bg-[#F8F5F2] px-2 md:px-32 py-0"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-16">
@@ -478,12 +487,13 @@ export default function Contact({
                     </p>
                     <button
                       type="submit"
-                      disabled={submitting}
+                      disabled={submitting || !isFormConfigured}
                       className="focus-teal"
                       style={{
-                        backgroundColor: submitting
-                          ? "rgba(13,148,136,0.6)"
-                          : "#0D9488",
+                        backgroundColor:
+                          submitting || !isFormConfigured
+                            ? "rgba(13,148,136,0.4)"
+                            : "#0D9488",
                         color: "#F8F5F2",
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "13px",
@@ -492,17 +502,21 @@ export default function Contact({
                         textTransform: "uppercase",
                         padding: "18px 40px",
                         border: "none",
-                        cursor: submitting ? "not-allowed" : "pointer",
+                        cursor:
+                          submitting || !isFormConfigured
+                            ? "not-allowed"
+                            : "pointer",
                         transition: "all 0.3s ease",
                         minHeight: "44px",
                         minWidth: "180px",
+                        opacity: isFormConfigured ? 1 : 0.6,
                       }}
                       onMouseEnter={(e) => {
-                        if (!submitting)
+                        if (!submitting && isFormConfigured)
                           e.currentTarget.style.backgroundColor = "#121D2F";
                       }}
                       onMouseLeave={(e) => {
-                        if (!submitting)
+                        if (!submitting && isFormConfigured)
                           e.currentTarget.style.backgroundColor = "#0D9488";
                       }}
                     >
@@ -511,16 +525,29 @@ export default function Contact({
                   </div>
 
                   {/* Turnstile — below submit, inside form. Single-use token; reset after each attempt. Responsive: flexible size, 100% width */}
-                  <Turnstile
-                    sitekey={siteKey}
-                    action="contact"
-                    onVerify={(token) => setTurnstileToken(token)}
-                    onExpire={() => setTurnstileToken(null)}
-                    onError={() => setTurnstileToken(null)}
-                    onWidgetId={(id) => setTurnstileWidgetId(id)}
-                    size="flexible"
-                    theme="light"
-                  />
+                  {isFormConfigured ? (
+                    <Turnstile
+                      sitekey={siteKey}
+                      action="contact"
+                      onVerify={(token) => setTurnstileToken(token)}
+                      onExpire={() => setTurnstileToken(null)}
+                      onError={() => setTurnstileToken(null)}
+                      onWidgetId={(id) => setTurnstileWidgetId(id)}
+                      size="flexible"
+                      theme="light"
+                    />
+                  ) : (
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "13px",
+                        color: "#b91c1c",
+                      }}
+                    >
+                      This form is not currently configured. Please contact the
+                      developer.
+                    </p>
+                  )}
 
                   {error && (
                     <p
